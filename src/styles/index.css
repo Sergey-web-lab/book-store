@@ -1,0 +1,41 @@
+/* :root {
+  --header-footer_background: #000218;
+  --body_background: #060A30;
+  --card_background: #353358;
+  --body_color: white;
+  --link_color: #595B82;
+  --btn_background: #F4ACC4;
+} */
+
+[data-theme='dark'] {
+  /* --header-footer_background: #0e101c; */
+  --body_background: #0e101c;
+  --title_border-bottom: 1px solid rgb(79, 98, 148);
+  --card_background: #333;
+  --body_color: white;
+  --link_color: white;
+  --btn_background: #ec5990;
+  --btn_background-hover: #bf1650;
+}
+
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+.err {
+  color: #bf1650;
+}
+
+.err::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+.container {
+  background-color: var(--body_background);
+  color: var(--body_color);
+}
+
+.container a {
+  color: var(--link_color);
+}

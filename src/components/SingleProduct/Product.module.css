@@ -1,0 +1,8 @@
+.size {
+  color: blueviolet;
+  cursor: pointer;
+}
+
+.active {
+  font-weight: 800;
+}
