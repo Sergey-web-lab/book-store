@@ -5,20 +5,19 @@ import { ROUTES } from "../../utils/routes";
 import { addItemToCart, remItemFromCart, toggleFavorites, addFullIPrice } from "../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const Products = ({ title, style = {}, products = [], amount }) => {
+const Products = ({ title, style = {}, products = [], qtyIToShow, setQtyIToShow }) => {
   const dispatch = useDispatch();
   const inputVal = useSelector(state => state.user.searchInputVal);
   const cartData = useSelector(state => state.user.cart);
   const favData = useSelector(state => state.user.favorites);
-  const list = products.filter((_, i) => i < amount);
 
   const addToCart = (index, id, price) => {
-    dispatch(addItemToCart(list[index]));
+    dispatch(addItemToCart(products[index]));
     countIPricePlus(id, price);
   }
 
   const removeItemFromCart = (index, id, price) => {
-    dispatch(remItemFromCart(list[index]));
+    dispatch(remItemFromCart(products[index]));
     countIPriceMinus(id, price);
   }
 
@@ -43,14 +42,28 @@ const Products = ({ title, style = {}, products = [], amount }) => {
   }
 
   const toggleFav = (index) => {
-    dispatch(toggleFavorites(list[index]));
+    dispatch(toggleFavorites(products[index]));
+  }
+
+  const toggleQtyIToShow = (e) => {
+    setQtyIToShow(e.target.value);
   }
 
   return (
     <section className="products" style={style}>
       {title && <h2>{title}</h2>}
+      <div className="products__countShowItems">
+        <span>Show </span>
+        <select
+          value={qtyIToShow}
+          onChange={e => toggleQtyIToShow(e)}
+        >
+          <option value="4">4 items each</option>
+          <option value="8">8 items each</option>
+        </select>
+      </div>
       <div className={styles.products}>
-        {list.filter(obj => {
+        {products.filter(obj => {
           if (obj.title.toLowerCase().includes(inputVal.toLowerCase())) {
             return true;
           }
