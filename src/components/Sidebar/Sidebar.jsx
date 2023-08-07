@@ -1,9 +1,13 @@
-import { NavLink } from "react-router-dom";
+import style from "./Sidebar.module.css";
 import { useGetCategoriesQuery } from "../../features/api/apiSlice";
 
-const Sidebar = () => {
+const Sidebar = ({ setGenreForFilter }) => {
   const { data = [] } = useGetCategoriesQuery();
   const list = data;
+
+  const handleSetCat = (title) => {
+    setGenreForFilter(title);
+  }
 
   return (
     <section className="sidebar">
@@ -11,14 +15,8 @@ const Sidebar = () => {
       <nav>
         <ul className="sidebar__menu">
           {list.map(({ id, title }) => (
-            <li key={id}>
-              <NavLink
-                className={({ isActive }) =>
-                  `sidebar__menu_link ${isActive ? 'active' : ''}`}
-                to={`/categories/${id}`}
-              >
-                {title}
-              </NavLink>
+            <li className={style.itemCat} key={id} onClick={() => handleSetCat(title)}>
+              {title}
             </li>
           ))}
         </ul>

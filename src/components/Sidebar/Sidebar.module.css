@@ -1,0 +1,8 @@
+.itemCat {
+  cursor: pointer;
+}
+
+.itemCat:hover {
+  color: coral;
+  list-style-type: none;
+}

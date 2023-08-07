@@ -184,26 +184,31 @@ const items = [
 const categories = [
   {
     "id": 1,
+    "title": "All",
+    "description": "All category descr"
+  },
+  {
+    "id": 2,
     "title": "Fantasy",
     "description": "Fantasy category descr"
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "Romance",
     "description": "Romance category descr"
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "Fairy tale",
     "description": "Fairy tale category descr"
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "Horror",
     "description": "Horror category descr"
   },
   {
-    "id": 5,
+    "id": 6,
     "title": "Detective",
     "description": "Detective category descr"
   }
