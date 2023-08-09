@@ -4,13 +4,12 @@ import { useGetProductQuery } from "../../features/api/apiSlice";
 import PaginationC from "../PaginationC/PaginationC";
 import Products from "../Products/Products";
 
-const Home = ({ genreForFilter }) => {
-  const [qtyIToShow, setQtyIToShow] = useState(4);
+const Home = ({ genreForFilter, currentPage, setCurrentPage }) => {
+  const localPostsShowQty = localStorage.getItem('postsPerPage');
   const { data = [], isLoading } = useGetProductQuery();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(qtyIToShow);
-  const lastPostIndex = currentPage * postPerPage;
-  const firstPostIndex = lastPostIndex - postPerPage;
+  const [postsPerPage, setPostsPerPage] = useState(localPostsShowQty ? localPostsShowQty : 4);
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
 
   const itemsCurrentCat = data.filter(
     genreForFilter == 'All' || genreForFilter == 'all'
@@ -20,10 +19,10 @@ const Home = ({ genreForFilter }) => {
 
   const currentPosts = itemsCurrentCat.slice(firstPostIndex, lastPostIndex);
 
+
   useEffect(() => {
-    setPostPerPage(qtyIToShow);
     setCurrentPage(1);
-  }, [qtyIToShow])
+  }, [postsPerPage])
 
   if (isLoading) return <h1>Loading</h1>
 
@@ -32,12 +31,13 @@ const Home = ({ genreForFilter }) => {
       <Products
         products={currentPosts}
         title="Trending"
-        qtyIToShow={qtyIToShow}
-        setQtyIToShow={setQtyIToShow}
+        postPerPage={postsPerPage}
+        setPostsPerPage={setPostsPerPage}
+        localPostsShowQty={localPostsShowQty}
       />
       <PaginationC
         totalPosts={itemsCurrentCat.length}
-        postPerPage={postPerPage}
+        postsPerPage={postsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />

@@ -5,7 +5,7 @@ import { ROUTES } from "../../utils/routes";
 import { addItemToCart, remItemFromCart, toggleFavorites, addFullIPrice } from "../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const Products = ({ title, style = {}, products = [], qtyIToShow, setQtyIToShow }) => {
+const Products = ({ title, style = {}, products = [], postsPerPage, setPostsPerPage, localPostsShowQty }) => {
   const dispatch = useDispatch();
   const inputVal = useSelector(state => state.user.searchInputVal);
   const cartData = useSelector(state => state.user.cart);
@@ -46,7 +46,8 @@ const Products = ({ title, style = {}, products = [], qtyIToShow, setQtyIToShow 
   }
 
   const toggleQtyIToShow = (e) => {
-    setQtyIToShow(e.target.value);
+    setPostsPerPage(e.target.value);
+    localStorage.setItem('postsPerPage', e.target.value);
   }
 
   return (
@@ -55,7 +56,8 @@ const Products = ({ title, style = {}, products = [], qtyIToShow, setQtyIToShow 
       <div className="products__countShowItems">
         <span>Show </span>
         <select
-          value={qtyIToShow}
+          defaultValue={localPostsShowQty}
+          value={postsPerPage}
           onChange={e => toggleQtyIToShow(e)}
         >
           <option value="4">4 items each</option>
@@ -88,18 +90,22 @@ const Products = ({ title, style = {}, products = [], qtyIToShow, setQtyIToShow 
                   ? ''
                   : <p>Full cost: {cartData.find(n => n.id === id).fullIPrice} $</p>}
               </div>
-              <Link className="products__product_link" to={`/items/${id}`}>
-                <Button to={ROUTES.PRODUCT} variant="primary">Info</Button>
-              </Link>
-              <Button onClick={() => toggleFav(index)} variant="primary">
-                {favData.find(n => n.id === id) === undefined
-                  ? 'Add to favorites'
-                  : 'Del from favorites'}
-              </Button>
-              <Button onClick={() => addToCart(index, id, price)} variant="primary">+</Button>
-              {cartData.find(n => n.id === id) === undefined || cartData.find(n => n.id === id).quantity === 0
-                ? ''
-                : <Button onClick={() => removeItemFromCart(index, id, price)} variant="primary">-</Button>}
+              <div className={styles.mainBtnsWrapper}>
+                <Link className="products__product_link" to={`/items/${id}`}>
+                  <Button to={ROUTES.PRODUCT} variant="primary">Info</Button>
+                </Link>
+                <Button onClick={() => toggleFav(index)} variant="primary">
+                  {favData.find(n => n.id === id) === undefined
+                    ? 'Add to favorites'
+                    : 'Del from favorites'}
+                </Button>
+              </div>
+              <div className={styles.changeCountBtnsWrapper}>
+                <Button onClick={() => addToCart(index, id, price)} variant="primary">+</Button>
+                {cartData.find(n => n.id === id) === undefined || cartData.find(n => n.id === id).quantity === 0
+                  ? ''
+                  : <Button onClick={() => removeItemFromCart(index, id, price)} variant="primary">-</Button>}
+              </div>
             </Card.Body>
           </Card>
         ))}

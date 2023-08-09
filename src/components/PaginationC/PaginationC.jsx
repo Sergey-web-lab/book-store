@@ -1,7 +1,7 @@
 import style from "./PaginationC.module.css";
 import Pagination from 'react-bootstrap/Pagination';
 
-const PaginationC = ({ totalPosts, postPerPage, setCurrentPage, currentPage }) => {
+const PaginationC = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) => {
   let pages = [];
   let active = currentPage;
 
@@ -10,7 +10,7 @@ const PaginationC = ({ totalPosts, postPerPage, setCurrentPage, currentPage }) =
     window.scrollTo(0, 0);
   }
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pages.push(
       <Pagination.Item onClick={() => handleClick(i)} key={i} active={i === active}>
         {i}

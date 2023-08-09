@@ -87,7 +87,7 @@ const userSlice = createSlice({
       state.isAuth = true;
     },
     removeUser(state) {
-      state.currentUser = null;
+      state.currentUser = {};
       state.isAuth = false;
     },
   },

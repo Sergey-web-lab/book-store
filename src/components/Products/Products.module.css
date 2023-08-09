@@ -9,3 +9,17 @@
 .card {
   width: 18rem;
 }
+
+.mainBtnsWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 7px;
+}
+
+.changeCountBtnsWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 7px;
+}

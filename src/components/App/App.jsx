@@ -6,13 +6,21 @@ import { useState } from "react";
 
 const App = () => {
   const [genreForFilter, setGenreForFilter] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <div className="app">
       <Header />
       <div className="container">
-        <Sidebar setGenreForFilter={setGenreForFilter} />
-        <AppRoutes genreForFilter={genreForFilter} />
+        <Sidebar
+          setGenreForFilter={setGenreForFilter}
+          setCurrentPage={setCurrentPage}
+        />
+        <AppRoutes
+          genreForFilter={genreForFilter}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
       <Footer />
     </div>

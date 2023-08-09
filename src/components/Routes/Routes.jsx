@@ -11,10 +11,14 @@ import Favorites from "../Favorites/Favorites";
 import OrderForm from "../OrderForm/OrderForm";
 
 
-const AppRoutes = ({ genreForFilter }) => {
+const AppRoutes = ({ genreForFilter, currentPage, setCurrentPage }) => {
   return (
     <Routes>
-      <Route index element={<Home genreForFilter={genreForFilter} />} />
+      <Route index element={
+        <Home genreForFilter={genreForFilter}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage} />
+      } />
       <Route path={ROUTES.PRODUCT} element={<SingleProduct />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
