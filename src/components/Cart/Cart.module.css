@@ -1,5 +1,5 @@
 .item {
-  display: flex;
+  display: flex !important;
   gap: 30px;
   margin-top: 35px;
 }

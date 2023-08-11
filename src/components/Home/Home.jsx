@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useGetProductQuery } from "../../features/api/apiSlice";
 import PaginationC from "../PaginationC/PaginationC";
 import Products from "../Products/Products";
@@ -11,14 +12,22 @@ const Home = ({ genreForFilter, currentPage, setCurrentPage }) => {
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
 
-  const itemsCurrentCat = data.filter(
+  const inputVal = useSelector(state => state.user.searchInputVal);
+  const dataAfterSearchFilter = data.filter(obj => {
+    if (obj.title.toLowerCase().includes(inputVal.toLowerCase())) {
+      return true;
+    }
+    return false;
+  })
+
+  const itemsCurrentCat = dataAfterSearchFilter.filter(
+    // const itemsCurrentCat = data.filter(
     genreForFilter == 'All' || genreForFilter == 'all'
       ? item => item
       : item => item.genre.toLowerCase() == genreForFilter.toLowerCase()
   )
 
   const currentPosts = itemsCurrentCat.slice(firstPostIndex, lastPostIndex);
-
 
   useEffect(() => {
     setCurrentPage(1);
@@ -30,7 +39,7 @@ const Home = ({ genreForFilter, currentPage, setCurrentPage }) => {
     <>
       <Products
         products={currentPosts}
-        title="Trending"
+        title={`Selected category: ${genreForFilter}`}
         postPerPage={postsPerPage}
         setPostsPerPage={setPostsPerPage}
         localPostsShowQty={localPostsShowQty}

@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 35px;
-  padding-top: 30px;
+  /* margin-top: 35px; */
+  padding-top: 65px;
   padding-bottom: 30px;
   background-color: #e8e8e8;
 }

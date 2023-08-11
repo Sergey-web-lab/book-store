@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { useSelector } from "react-redux";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Badge from 'react-bootstrap/Badge';
 
 const OrderForm = () => {
   const userState = useSelector(state => state.user);
@@ -28,12 +31,30 @@ const OrderForm = () => {
     <div className={styles.orderForm}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>OrderForm</h1>
-        <input placeholder="Name" {...register("Name",
-          { required: "Name is required", minLength: { value: 2, message: "Min length is 2" } }
-        )} />
-        <p>Your name</p>
-        <input type='email' placeholder="email" {...register("email", { required: "Email is required" })} />
-        <p>Your email</p>
+        <InputGroup>
+          <InputGroup.Text id="email">Name</InputGroup.Text>
+          <Form.Control
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            aria-label="Enter your name"
+            aria-describedby="name"
+            {...register("Name",
+              { required: "Name is required", minLength: { value: 2, message: "Min length is 2" } }
+            )}
+          />
+        </InputGroup>
+        <InputGroup>
+          <InputGroup.Text id="email">Email</InputGroup.Text>
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            aria-label="Enter your email"
+            aria-describedby="email"
+            {...register("email", { required: "Email is required" })}
+          />
+        </InputGroup>
         <input type='checkbox' {...register("getNews")} />
         <p>Would you like to receive a newsletter?</p>
         <select
@@ -48,8 +69,28 @@ const OrderForm = () => {
           ?
           <>
             <h3>Delivery</h3>
-            <input type='text' {...register("address")} />
-            <input type='time' {...register("time")} />
+            <InputGroup>
+              <InputGroup.Text id="address">Address</InputGroup.Text>
+              <Form.Control
+                type="text"
+                name="address"
+                placeholder="Enter your address"
+                aria-label="Enter your address"
+                aria-describedby="address"
+                {...register("address")}
+              />
+            </InputGroup>
+            <InputGroup>
+              <InputGroup.Text id="dateAndTime">Date and time</InputGroup.Text>
+              <Form.Control
+                type="datetime-local"
+                name="dateAndTime"
+                placeholder="Enter your date and time"
+                aria-label="Enter your date and time"
+                aria-describedby="dateAndTime"
+                {...register("dateAndTime")}
+              />
+            </InputGroup>
           </>
           :
           <>
@@ -61,12 +102,12 @@ const OrderForm = () => {
           </>}
         <input type="submit" />
       </form>
-      <div className="orderForm__itemsInfo">
+      <Badge className={styles.orderInfo} bg="success">
         <h1>You order:</h1>
         <h4>All items: {fullAmount}</h4>
         <h4>All price: {price} $</h4>
         <Link to={ROUTES.CART}>Back to cart</Link>
-      </div>
+      </Badge>
     </div >
   );
 }

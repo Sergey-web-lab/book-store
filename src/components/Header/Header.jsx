@@ -6,6 +6,7 @@ import { setSearchInputVal, toggleForm } from "../../features/user/userSlice";
 import { useCheckAuth } from "../../hooks/useCheckAuth";
 import { useSelector } from "react-redux";
 import DarkMode from "../DarkMode/DarkMode";
+import Form from 'react-bootstrap/Form';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -43,21 +44,15 @@ const Header = () => {
             : `User: ${userInfo.email}`
           }
         </Link>
-        <form className="header__info_form">
-          <div className="header__info_form_input">
-            <input
-              type="search"
-              name="search"
-              placeholder="search for anything..."
-              autoComplete="off"
-              onChange={e => inputHandler(e)}
-              value={inputVal}
-            />
-          </div>
-          <div className="header__info_form_box">
-            formBox
-          </div>
-        </form>
+        <div className="header__info_input">
+          <Form.Control
+            type="search"
+            placeholder="Search books in Main..."
+            autoComplete="off"
+            onChange={e => inputHandler(e)}
+            value={inputVal}
+          />
+        </div>
         <div className="header__info_linkToInfo">
           <DarkMode />
         </div>

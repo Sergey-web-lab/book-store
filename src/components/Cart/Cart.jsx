@@ -1,10 +1,15 @@
+import styles from "./Cart.module.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Link } from "react-router-dom";
 import { addFullIPrice, addItemToCart, remItemAllFromCart, remItemFromCart } from "../../features/user/userSlice";
 import { ROUTES } from "../../utils/routes";
+import Alert from 'react-bootstrap/Alert';
+import Figure from 'react-bootstrap/Figure';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
-import styles from "./Cart.module.css";
 
 const Cart = () => {
   const cartData = useSelector(state => state.user.cart);
@@ -51,26 +56,38 @@ const Cart = () => {
       {products.length == 0
         ?
         <>
-          <h2>Cart is empty</h2>
-          <Link to={ROUTES.HOME}><h1>Back to main</h1></Link>
+          <Alert variant="info">
+            <Alert.Heading>Cart is empty</Alert.Heading>
+            <Link to={ROUTES.HOME}><h1>Back to main</h1></Link>
+          </Alert>
         </>
         :
         products.map(({ id, title, image, price, quantity, fullIPrice }, index) => (
-          <div key={id}>
-            {quantity <= 0 ? '' : (
-              <div key={id} className={styles.item}>
-                <h2>{title}</h2>
-                <img src={`${image}`} alt="Product image" />
-                <p>Price: {price} $</p>
-                <p>Quantity: {quantity}</p>
-                <p>Full item cost: {fullIPrice} $</p>
-                <button onClick={() => removeItemFromCart(index, id, price)}>-</button>
-                <button onClick={() => addToCart(index, id, price)}>+</button>
-                <button onClick={() => removeItemAllFromCart(index)}>x</button>
-              </div>
-            )}
-          </div>
-        ))}
+          <Figure className={styles.item} key={id}>
+            <Figure.Image
+              width={171}
+              height={180}
+              alt={title}
+              src={image}
+            />
+            <Figure.Caption>
+              <h5>{title}</h5>
+              <p>Price: {price} $</p>
+              <p>Quantity: {quantity}</p>
+              <p>Full item cost: {fullIPrice} $</p>
+              <ButtonToolbar aria-label="Toolbar with button groups">
+                <ButtonGroup className="me-2" aria-label="First group">
+                  <Button onClick={() => removeItemFromCart(index, id, price)}>-</Button>
+                  <Button onClick={() => addToCart(index, id, price)}>+</Button>
+                </ButtonGroup>
+                <ButtonGroup aria-label="Second group">
+                  <Button onClick={() => removeItemAllFromCart(index)}>x</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
+            </Figure.Caption>
+          </Figure>
+        ))
+      }
       {products.length != 0
         && <Link to={ROUTES.ORDERFORM}>Make an order</Link>}
     </div>

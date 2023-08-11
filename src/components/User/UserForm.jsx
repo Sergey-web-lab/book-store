@@ -39,23 +39,6 @@ const UserForm = ({ btnText, handleClick }) => {
         onClick={() => handleClick(email, password)}
         variant="primary"
       >{btnText}</Button>
-      {/* <input
-        type="email"
-        name="email"
-        value={email}
-        onChange={e => { setEmail(e.target.value) }}
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={e => { setPassword(e.target.value) }}
-        placeholder="Password"
-      />
-      <button
-        onClick={() => handleClick(email, password)}
-      >{btnText}</button> */}
     </div>
   );
 }

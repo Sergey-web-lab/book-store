@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Products = ({ title, style = {}, products = [], postsPerPage, setPostsPerPage, localPostsShowQty }) => {
   const dispatch = useDispatch();
-  const inputVal = useSelector(state => state.user.searchInputVal);
   const cartData = useSelector(state => state.user.cart);
   const favData = useSelector(state => state.user.favorites);
 
@@ -65,12 +64,7 @@ const Products = ({ title, style = {}, products = [], postsPerPage, setPostsPerP
         </select>
       </div>
       <div className={styles.products}>
-        {products.filter(obj => {
-          if (obj.title.toLowerCase().includes(inputVal.toLowerCase())) {
-            return true;
-          }
-          return false;
-        }).map(({ id, image, title, author, genre, price }, index) => (
+        {products.map(({ id, image, title, author, genre, price }, index) => (
           <Card className={styles.card} key={id}>
             <Card.Img variant="top" src={`${image}`} />
             <Card.Body>
