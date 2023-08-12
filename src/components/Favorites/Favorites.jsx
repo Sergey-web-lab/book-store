@@ -1,4 +1,5 @@
 import styles from "./Favorites.module.css";
+import starImg from "../../imgs/star.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorites } from "../../features/user/userSlice";
 import { Link } from "react-router-dom";
@@ -17,10 +18,13 @@ const Favorites = () => {
 
   return (
     <div className="favorites">
-      <h1>Favorites</h1>
+      <div className={styles.titleWrapper}>
+        <h1 className={styles.title}>Favorites</h1>
+        <img className={styles.img} src={starImg} alt="star" />
+      </div>
       {favData.length === 0
         ? <>
-          <Alert variant="info">
+          <Alert className={styles.alert} variant="info">
             <Alert.Heading>Favorites list is empty</Alert.Heading>
             <Link to={ROUTES.HOME}><h1>Back to main</h1></Link>
           </Alert>

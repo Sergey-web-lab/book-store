@@ -1,3 +1,5 @@
+import styles from "./LoginPage.module.css";
+import loginImg from "../../imgs/login.png";
 import { Link } from "react-router-dom";
 import UserForm from "./UserForm";
 import { useDispatch } from "react-redux";
@@ -33,7 +35,10 @@ const LoginPage = () => {
 
   return (
     <div className="loginPage">
-      <h1>Login</h1>
+      <div className={styles.titleWrapper}>
+        <h1>Login</h1>
+        <img className={styles.img} src={loginImg} alt="login" />
+      </div>
       <UserForm
         btnText="Sign in"
         handleClick={handleLogin}

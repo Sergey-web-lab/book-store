@@ -10,7 +10,6 @@ const UserForm = ({ btnText, handleClick }) => {
 
   return (
     <div className={styles.userForm}>
-      <h1>User Form</h1>
       <InputGroup>
         <InputGroup.Text id="email">Email</InputGroup.Text>
         <Form.Control

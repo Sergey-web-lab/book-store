@@ -1,3 +1,5 @@
+import styles from "./RegisterPage.module.css";
+import registerImg from "../../imgs/register.png";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import UserForm from "./UserForm";
@@ -32,7 +34,10 @@ const RegisterPage = () => {
 
   return (
     <div className="registerPage">
-      <h1>Register</h1>
+      <div className={styles.titleWrapper}>
+        <h1>Register</h1>
+        <img className={styles.img} src={registerImg} alt="register" />
+      </div>
       <UserForm
         btnText="Register"
         handleClick={handleRegister}

@@ -13,3 +13,14 @@
   justify-content: space-around;
   column-gap: 30px;
 }
+
+.mainLinkWrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.img {
+  width: 55px;
+  height: 55px;
+}

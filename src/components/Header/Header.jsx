@@ -1,4 +1,5 @@
 import styles from "./Header.module.css";
+import homeImg from "../../imgs/home.png";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { useDispatch } from "react-redux";
@@ -33,7 +34,8 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className="header__mainLink">
-        <Link to={ROUTES.HOME}>
+        <Link className={styles.mainLinkWrapper} to={ROUTES.HOME}>
+          <img className={styles.img} src={homeImg} alt="Main page" />
           <h1>Main</h1>
         </Link>
       </div>

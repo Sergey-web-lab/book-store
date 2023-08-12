@@ -3,3 +3,19 @@
   gap: 40px;
   margin-top: 25px;
 }
+
+.alert {
+  margin-top: 40px;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+
+.img {
+  width: 75px;
+  height: 75px;
+}

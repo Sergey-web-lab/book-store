@@ -1,4 +1,5 @@
 import styles from "./Cart.module.css";
+import cartImg from "../../imgs/cart.png";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Link } from "react-router-dom";
@@ -52,7 +53,10 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <h1>Cart</h1>
+      <div className={styles.titleWrapper}>
+        <h1>Cart</h1>
+        <img className={styles.img} src={cartImg} alt="cart" />
+      </div>
       {products.length == 0
         ?
         <>
