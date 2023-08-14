@@ -6,15 +6,22 @@ import { ROUTES } from "../../utils/routes";
 import { useSelector } from "react-redux";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Badge from 'react-bootstrap/Badge';
 
 const OrderForm = () => {
   const userState = useSelector(state => state.user);
   const cartList = userState.cart;
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: { email: `${userState.isAuth && userState.currentUser.email}` }
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      email: `${userState.isAuth ? userState.currentUser.email : ''}`
+    }
   });
-  const onSubmit = data => console.log(data);
+
+  const onSubmit = data => {
+    const fullInfo = { ...data, cartList };
+    console.log(JSON.stringify(fullInfo));
+  }
+
   const [delivOrNot, setDelivOrNot] = useState('delivery');
 
   let fullAmount = 0;
@@ -29,35 +36,66 @@ const OrderForm = () => {
 
   return (
     <div className={styles.orderForm}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.orderFormInputBlock} onSubmit={handleSubmit(onSubmit)}>
         <h1>OrderForm</h1>
         <InputGroup>
-          <InputGroup.Text id="email">Name</InputGroup.Text>
+          <InputGroup.Text id="name">Name</InputGroup.Text>
           <Form.Control
             type="text"
-            name="name"
             placeholder="Enter your name"
             aria-label="Enter your name"
             aria-describedby="name"
-            {...register("Name",
-              { required: "Name is required", minLength: { value: 2, message: "Min length is 2" } }
-            )}
+            {...register("name", {
+              required: "Name is required",
+              minLength: { value: 2, message: "Min length is 2" },
+              pattern: {
+                value: /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/,
+                message: 'Error name format. Еhe first character must be a letter'
+              }
+            })}
           />
         </InputGroup>
-        <InputGroup>
+        {errors.name && <p className="err">{errors.name?.message}</p>}
+        <InputGroup className={styles.input}>
+          <InputGroup.Text id="tel">Phone</InputGroup.Text>
+          <Form.Control
+            type="tel"
+            placeholder="Enter your phone"
+            aria-label="Enter your phone"
+            aria-describedby="tel"
+            {...register("tel", {
+              required: "Phone is required",
+              pattern: {
+                value: /^(\+)?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){5,12}\d$/,
+                message: 'Error phone format.'
+              }
+            })}
+          />
+        </InputGroup>
+        {errors.tel && <p className="err">{errors.tel?.message}</p>}
+        <InputGroup className={styles.input}>
           <InputGroup.Text id="email">Email</InputGroup.Text>
           <Form.Control
             type="email"
-            name="email"
             placeholder="Enter your email"
             aria-label="Enter your email"
             aria-describedby="email"
-            {...register("email", { required: "Email is required" })}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/,
+                message: 'Error email format.'
+              }
+            })}
           />
         </InputGroup>
-        <input type='checkbox' {...register("getNews")} />
-        <p>Would you like to receive a newsletter?</p>
+        {errors.email && <p className="err">{errors.email?.message}</p>}
+        <div className={styles.questionBlockWrapper}>
+          <input className={styles.checkbox} type='checkbox' {...register("getNews")} />
+          <p className={styles.checkboxText}>Would you like to receive a newsletter?</p>
+        </div>
         <select
+          className={styles.select}
           value={delivOrNot}
           onChange={e => setDelivOrNot(e.target.value)}
         >
@@ -69,28 +107,28 @@ const OrderForm = () => {
           ?
           <>
             <h3>Delivery</h3>
-            <InputGroup>
+            <InputGroup className={styles.input}>
               <InputGroup.Text id="address">Address</InputGroup.Text>
               <Form.Control
                 type="text"
-                name="address"
                 placeholder="Enter your address"
                 aria-label="Enter your address"
                 aria-describedby="address"
-                {...register("address")}
+                {...register("address", { required: "Address is required" })}
               />
             </InputGroup>
-            <InputGroup>
+            {errors.address && <p className="err">{errors.address?.message}</p>}
+            <InputGroup className={styles.input}>
               <InputGroup.Text id="dateAndTime">Date and time</InputGroup.Text>
               <Form.Control
                 type="datetime-local"
-                name="dateAndTime"
                 placeholder="Enter your date and time"
                 aria-label="Enter your date and time"
                 aria-describedby="dateAndTime"
-                {...register("dateAndTime")}
+                {...register("dateAndTime", { required: "Date and time is required" })}
               />
             </InputGroup>
+            {errors.dateAndTime && <p className="err">{errors.dateAndTime?.message}</p>}
           </>
           :
           <>
@@ -100,14 +138,31 @@ const OrderForm = () => {
             <h5>Working hours</h5>
             <p>10.00 - 19.00 everyday except holidays.</p>
           </>}
-        <input type="submit" />
+        <div className={styles.btnsWrapper}>
+          <button className={styles.btn}>Submit</button>
+          <input
+            className={styles.resetBtn}
+            type="button"
+            value="Reset Field Values"
+            onClick={() => {
+              reset(
+                {
+                  name: '',
+                  tel: '',
+                  email: `${userState.isAuth ? userState.currentUser.email : ''}`,
+                  address: '',
+                  dateAndTime: ''
+                })
+            }}
+          />
+        </div>
       </form>
-      <Badge className={styles.orderInfo} bg="success">
+      <div className={styles.orderInfo} bg="success">
         <h1>You order:</h1>
         <h4>All items: {fullAmount}</h4>
         <h4>All price: {price} $</h4>
-        <Link to={ROUTES.CART}>Back to cart</Link>
-      </Badge>
+        <Link className={styles.orderInfo_link} to={ROUTES.CART}>Back to cart</Link>
+      </div>
     </div >
   );
 }

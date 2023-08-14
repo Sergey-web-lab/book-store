@@ -52,7 +52,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart">
+    <div className={styles.cart}>
       <div className={styles.titleWrapper}>
         <h1>Cart</h1>
         <img className={styles.img} src={cartImg} alt="cart" />
@@ -93,7 +93,7 @@ const Cart = () => {
         ))
       }
       {products.length != 0
-        && <Link to={ROUTES.ORDERFORM}>Make an order</Link>}
+        && <Link className={styles.linkToForm} to={ROUTES.ORDERFORM}>Make an order</Link>}
     </div>
   );
 }

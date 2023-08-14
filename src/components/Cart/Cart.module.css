@@ -1,3 +1,7 @@
+.cart {
+  padding-bottom: 25px;
+}
+
 .item {
   display: flex !important;
   gap: 30px;
@@ -14,4 +18,26 @@
 .img {
   width: 80px;
   height: 80px;
+}
+
+.linkToForm {
+  background: linear-gradient(to right, #562268, #0d6efd);
+  background-color: #562268;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 10px 28px;
+  border: 0px solid #000;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.linkToForm:hover {
+  background: linear-gradient(to right, #522063, #0c68f0);
+  background-color: #522063;
+}
+
+.linkToForm:active {
+  transform: scale(0.95);
 }

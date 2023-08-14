@@ -4,7 +4,60 @@
   gap: 40px;
 }
 
+.orderFormInputBlock {
+  padding: 25px;
+  border-radius: 25px;
+  background: #e8e8e8;
+}
+
 .orderInfo {
   margin-top: 40px;
-  padding: 30px 20px;
+  height: fit-content;
+  padding: 25px;
+  border-radius: 25px;
+  background: #e8e8e8;
+}
+
+.orderInfo_link {
+  display: block;
+  border-radius: 25px;
+  background: #2184b4;
+  text-decoration: none;
+  color: white;
+  height: 25px;
+  text-align: center;
+  margin-top: 17px;
+}
+
+.input {
+  margin-top: 12px;
+}
+
+.questionBlockWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 7px;
+}
+
+.checkboxText {
+  margin-bottom: 0;
+}
+
+.select {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.btn {
+  margin-top: 18px;
+}
+
+.resetBtn {
+  margin-top: 18px;
+}
+
+.btnsWrapper {
+  display: flex;
+  gap: 10px;
 }
