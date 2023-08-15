@@ -36,16 +36,18 @@ const Header = () => {
       <div className="header__mainLink">
         <Link className={styles.mainLinkWrapper} to={ROUTES.HOME}>
           <img className={styles.img} src={homeImg} alt="Main page" />
-          <h1>Main</h1>
+          <h1 className={styles.mainTitle}>Main</h1>
         </Link>
       </div>
       <div className={styles.info}>
-        <Link to={isAuth ? `${ROUTES.ISAUTHPAGE}` : `${ROUTES.LOGIN}`} className="header__info_user">
-          {Object.keys(userInfo).length === 0
-            ? 'User'
-            : `User: ${userInfo.email}`
-          }
-        </Link>
+        <div className="userLinkWrapper">
+          <Link to={isAuth ? `${ROUTES.ISAUTHPAGE}` : `${ROUTES.LOGIN}`} className="header__info_user">
+            {Object.keys(userInfo).length === 0
+              ? 'User'
+              : `User: ${userInfo.email}`
+            }
+          </Link>
+        </div>
         <div className="header__info_input">
           <Form.Control
             type="search"

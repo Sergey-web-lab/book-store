@@ -60,10 +60,12 @@ const Cart = () => {
       {products.length == 0
         ?
         <>
-          <Alert variant="info">
+          <Alert className={styles.alert} variant="info">
             <Alert.Heading>Cart is empty</Alert.Heading>
-            <Link to={ROUTES.HOME}><h1>Back to main</h1></Link>
           </Alert>
+          <div className={styles.linkToMainWrapper}>
+            <Link className={styles.linkToMain} to={ROUTES.HOME}>Back to Main</Link>
+          </div>
         </>
         :
         products.map(({ id, title, image, price, quantity, fullIPrice }, index) => (

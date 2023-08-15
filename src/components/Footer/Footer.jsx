@@ -1,30 +1,28 @@
 import styles from "./Footer.module.css";
+import upImg from "../../imgs/up.png";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 
 const Footer = () => {
+  const goToUp = () => {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <footer className={styles.footer}>
-      <div className="footer__logo">
-        <Link to={ROUTES.HOME}>
-          footerLogo
-        </Link>
-      </div>
-      <div className="footer__copyrights">
-        copyrights
-      </div>
       <div className={styles.socials}>
         <a
-          href="#!"
+          href="https://vk.com/id10175513"
           target="_blank"
           rel="noreferrer"
-        >VK</a>
+        >My VK</a>
         <a
-          href="#!"
+          href="https://t.me/LSergio1994"
           target="_blank"
           rel="noreferrer"
-        >telegram</a>
+        >My telegram</a>
       </div>
+      <button onClick={goToUp} className={styles.goToUp}>Go to up</button>
     </footer>
   );
 }
