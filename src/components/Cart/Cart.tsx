@@ -1,7 +1,6 @@
 import styles from "./Cart.module.css";
 import cartImg from "../../imgs/cart.png";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useAppDispatch, useAppSelector } from "../../hooks/reactReduxHooks";
 import { Link } from "react-router-dom";
 import { addFullIPrice, addItemToCart, remItemAllFromCart, remItemFromCart } from "../../features/user/userSlice";
 import { ROUTES } from "../../utils/routes";
@@ -11,41 +10,50 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
+type Founded = {
+  quantity?: number
+}
 
 const Cart = () => {
-  const cartData = useSelector(state => state.user.cart);
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.user.cart);
+  const cartData = useAppSelector(state => state.user.cart);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.user.cart);
 
-  const addToCart = (index, id, price) => {
+  const addToCart = (index: number, id: number, price: number) => {
     dispatch(addItemToCart(products[index]));
-    countIPricePlus(index, id, price);
+    countIPricePlus(id, price);
   }
 
-  const removeItemFromCart = (index, id, price) => {
+  const removeItemFromCart = (index: number, id: number, price: number) => {
     dispatch(remItemFromCart(products[index]));
-    countIPriceMinus(index, id, price);
+    countIPriceMinus(id, price);
   }
 
-  const removeItemAllFromCart = (index) => {
+  const removeItemAllFromCart = (index: number) => {
     dispatch(remItemAllFromCart(products[index]));
   }
 
-  const countIPricePlus = (index, id, price) => {
-    let found = cartData.find(n => n.id === id);
+  const countIPricePlus = (id: number, price: number) => {
+    let found = cartData.find((n: { id: number; }) => n.id === id);
     let iCount;
     if (found === undefined) iCount = 1;
-    else iCount = found.quantity + 1;
+    else {
+      const founded: Founded = found;
+      iCount = Number(founded) + 1;
+    }
 
     const fullIPrice = price * iCount;
     dispatch(addFullIPrice({ fullIPrice, id }));
   }
 
-  const countIPriceMinus = (index, id, price) => {
-    let found = cartData.find(n => n.id === id);
+  const countIPriceMinus = (id: number, price: number) => {
+    let found = cartData.find((n: { id: number; }) => n.id === id);
     let iCount;
     if (found === undefined) iCount = 0;
-    else iCount = found.quantity - 1;
+    else {
+      const founded: Founded = found;
+      iCount = Number(founded) - 1;
+    }
 
     const fullIPrice = price * iCount;
     dispatch(addFullIPrice({ fullIPrice, id }));

@@ -1,10 +1,15 @@
 import styles from "./UserForm.module.css";
-import { useState } from "react";
+import { FC, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
-const UserForm = ({ btnText, handleClick }) => {
+type UserFormProps = {
+  btnText: string
+  handleClick: (arg1: string, arg2: string) => void
+}
+
+const UserForm: FC<UserFormProps> = ({ btnText, handleClick }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 

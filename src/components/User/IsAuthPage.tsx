@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux";
 import { removeUser } from "../../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks/reactReduxHooks";
 
 const IsAuthPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const ChangeAccount = () => {

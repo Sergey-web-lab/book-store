@@ -1,18 +1,18 @@
 import styles from "./Favorites.module.css";
 import starImg from "../../imgs/star.png";
-import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorites } from "../../features/user/userSlice";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
+import { useAppDispatch, useAppSelector } from "../../hooks/reactReduxHooks";
 import Alert from 'react-bootstrap/Alert';
 import Figure from 'react-bootstrap/Figure';
 import Button from 'react-bootstrap/Button';
 
 const Favorites = () => {
-  const favData = useSelector(state => state.user.favorites);
-  const dispatch = useDispatch();
+  const favData = useAppSelector(state => state.user.favorites);
+  const dispatch = useAppDispatch();
 
-  const remFav = (index) => {
+  const remFav = (index: number) => {
     dispatch(toggleFavorites(favData[index]));
   }
 

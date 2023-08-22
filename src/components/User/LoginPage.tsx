@@ -2,22 +2,22 @@ import styles from "./LoginPage.module.css";
 import loginImg from "../../imgs/login.png";
 import { Link } from "react-router-dom";
 import UserForm from "./UserForm";
-import { useDispatch } from "react-redux";
 import { setUser } from "../../features/user/userSlice";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks/reactReduxHooks";
 
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = (email, password) => {
+  const handleLogin = (email: string, password: string) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
+        const user: any = userCredential.user;
         navigate('/');
         dispatch(setUser({
           email: user.email,

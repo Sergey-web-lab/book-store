@@ -1,11 +1,10 @@
 import styles from "./SingleProduct.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../../features/api/apiSlice";
 import Product from "./Product";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { data } = useGetSingleProductQuery({ id });
 
   return (

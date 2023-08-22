@@ -9,9 +9,15 @@ import Info from "../Info/Info";
 import Cart from "../Cart/Cart";
 import Favorites from "../Favorites/Favorites";
 import OrderForm from "../OrderForm/OrderForm";
+import { FC } from "react";
 
+type AppRoutesProps = {
+  genreForFilter: string
+  currentPage: number
+  setCurrentPage: (arg: number) => void
+}
 
-const AppRoutes = ({ genreForFilter, currentPage, setCurrentPage }) => {
+const AppRoutes: FC<AppRoutesProps> = ({ genreForFilter, currentPage, setCurrentPage }) => {
   return (
     <Routes>
       <Route index element={

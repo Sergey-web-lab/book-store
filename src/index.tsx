@@ -11,12 +11,16 @@ import { store, persistor } from "./features/store";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.css';
 
-createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </BrowserRouter>
-  </Provider>
-);
+const root = document.getElementById("root");
+
+root
+  &&
+  createRoot(root).render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </BrowserRouter>
+    </Provider>
+  );

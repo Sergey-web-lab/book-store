@@ -1,11 +1,19 @@
 import style from "./PaginationC.module.css";
 import Pagination from 'react-bootstrap/Pagination';
+import { FC } from "react";
 
-const PaginationC = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) => {
+type PaginationCProps = {
+  totalPosts: number
+  postsPerPage: number
+  setCurrentPage: (arg: number) => void
+  currentPage: number
+}
+
+const PaginationC: FC<PaginationCProps> = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) => {
   let pages = [];
   let active = currentPage;
 
-  const handleClick = (i) => {
+  const handleClick = (i: number) => {
     setCurrentPage(i);
     window.scrollTo(0, 0);
   }

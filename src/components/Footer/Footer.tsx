@@ -1,7 +1,4 @@
 import styles from "./Footer.module.css";
-import upImg from "../../imgs/up.png";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/routes";
 
 const Footer = () => {
   const goToUp = () => {

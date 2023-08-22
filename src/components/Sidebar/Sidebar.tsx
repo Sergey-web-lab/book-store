@@ -5,20 +5,26 @@ import romanceImg from "../../imgs/romance.png";
 import fairyTaleImg from "../../imgs/fairy-tale.png";
 import horrorImg from "../../imgs/horror.png";
 import detectiveImg from "../../imgs/detective.png";
+import { FC } from "react";
 import { useGetCategoriesQuery } from "../../features/api/apiSlice";
 import { useNavigate } from "react-router-dom";
 import Badge from 'react-bootstrap/Badge';
 
-const Sidebar = ({ setGenreForFilter, setCurrentPage }) => {
-  const { data = [] } = useGetCategoriesQuery();
-  const list = data;
+type SidebarProps = {
+  setGenreForFilter: (arg: string) => void
+  setCurrentPage: (arg: number) => void
+}
+
+const Sidebar: FC<SidebarProps> = ({ setGenreForFilter, setCurrentPage }) => {
+  const { data = [] } = useGetCategoriesQuery(null);
+  const list: [] = data;
   const navigate = useNavigate();
 
   const iconList = [
     allImg, fantasyImg, romanceImg, fairyTaleImg, horrorImg, detectiveImg
   ]
 
-  const handleSetCat = (title) => {
+  const handleSetCat = (title: string) => {
     setGenreForFilter(title);
     setCurrentPage(1);
     navigate('/');

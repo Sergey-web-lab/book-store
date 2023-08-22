@@ -1,23 +1,43 @@
 import styles from "./OrderForm.module.css";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
-import { useSelector } from "react-redux";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { useAppSelector } from "../../hooks/reactReduxHooks";
 
 const OrderForm = () => {
-  const userState = useSelector(state => state.user);
+  enum DelivOrNotEnum {
+    delivery = 'Delivery',
+    pickup = 'Pickup'
+  }
+
+  type Inputs = {
+    name: string
+    tel: number | string
+    email: string
+    getNews: boolean
+    delivOrNot: DelivOrNotEnum
+    address: string
+    dateAndTime: string
+  }
+
+  type CurrentUser = {
+    email?: string
+  }
+
+  const userState = useAppSelector(state => state.user);
   const cartList = userState.cart;
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const currentUser: CurrentUser = userState.currentUser;
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({
     mode: 'onBlur',
     defaultValues: {
-      email: `${userState.isAuth ? userState.currentUser.email : ''}`
+      email: `${userState.isAuth ? currentUser.email : ''}`
     }
   });
 
-  const onSubmit = data => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     const fullInfo = { ...data, cartList };
     console.log(JSON.stringify(fullInfo));
   }
@@ -25,12 +45,12 @@ const OrderForm = () => {
   const [delivOrNot, setDelivOrNot] = useState('delivery');
 
   let fullAmount = 0;
-  cartList.forEach((item) => {
+  cartList.forEach((item: { quantity: number; }) => {
     fullAmount += item.quantity;
   })
 
   let price = 0;
-  cartList.forEach((item) => {
+  cartList.forEach((item: { fullIPrice: number; }) => {
     price += item.fullIPrice;
   })
 
@@ -96,7 +116,7 @@ const OrderForm = () => {
         </div>
         <select
           className={styles.select}
-          value={delivOrNot}
+          {...register("delivOrNot")}
           onChange={e => setDelivOrNot(e.target.value)}
         >
           <option value="delivery" >Delivery</option>
@@ -149,7 +169,7 @@ const OrderForm = () => {
                 {
                   name: '',
                   tel: '',
-                  email: `${userState.isAuth ? userState.currentUser.email : ''}`,
+                  email: `${userState.isAuth ? currentUser.email : ''}`,
                   address: '',
                   dateAndTime: ''
                 })
@@ -157,7 +177,7 @@ const OrderForm = () => {
           />
         </div>
       </form>
-      <div className={styles.orderInfo} bg="success">
+      <div className={styles.orderInfo}>
         <h1>You order:</h1>
         <h4>All items: {fullAmount}</h4>
         <h4>All price: {price} $</h4>

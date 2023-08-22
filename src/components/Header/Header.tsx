@@ -2,32 +2,36 @@ import styles from "./Header.module.css";
 import homeImg from "../../imgs/home.png";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
-import { useDispatch } from "react-redux";
-import { setSearchInputVal, toggleForm } from "../../features/user/userSlice";
+import { setSearchInputVal } from "../../features/user/userSlice";
 import { useCheckAuth } from "../../hooks/useCheckAuth";
-import { useSelector } from "react-redux";
 import DarkMode from "../DarkMode/DarkMode";
 import Form from 'react-bootstrap/Form';
+import { ChangeEvent } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/reactReduxHooks";
+
+type UserInfo = {
+  email?: string
+}
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const userInfo = useSelector(state => state.user.currentUser);
-  const favList = useSelector(state => state.user.favorites);
-  const cartList = useSelector(state => state.user.cart);
-  const inputVal = useSelector(state => state.user.searchInputVal);
+  const dispatch = useAppDispatch();
+  const userInfo: UserInfo = useAppSelector(state => state.user.currentUser);
+  const favList = useAppSelector(state => state.user.favorites);
+  const cartList = useAppSelector(state => state.user.cart);
+  const inputVal = useAppSelector(state => state.user.searchInputVal);
   const { isAuth } = useCheckAuth();
 
   let fullAmount = 0;
-  cartList.forEach((item) => {
+  cartList.forEach((item: { quantity: number; }) => {
     fullAmount += item.quantity;
   })
 
   let price = 0;
-  cartList.forEach((item) => {
+  cartList.forEach((item: { fullIPrice: number; }) => {
     price += item.fullIPrice;
   })
 
-  const inputHandler = (e) => {
+  const inputHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     dispatch(setSearchInputVal(e.target.value));
   }
 
