@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { useState } from "react";
 import { useGetProductQuery } from "../../features/api/apiSlice";
+import { IProduct } from "../../features/user/userSlice";
 import { useAppSelector } from "../../hooks/reactReduxHooks";
 import PaginationC from "../PaginationC/PaginationC";
 import Products from "../Products/Products";
@@ -26,13 +27,13 @@ const Home: FC<HomeProps> = ({ genreForFilter, currentPage, setCurrentPage }) =>
     return false;
   })
 
-  const itemsCurrentCat: object[] = dataAfterSearchFilter.filter(
+  const itemsCurrentCat: IProduct[] = dataAfterSearchFilter.filter(
     genreForFilter == 'All' || genreForFilter == 'all'
       ? (item: object) => item
       : (item: { genre: string; }) => item.genre.toLowerCase() == genreForFilter.toLowerCase()
   )
 
-  const currentPosts: object[] = itemsCurrentCat.slice(firstPostIndex, lastPostIndex);
+  const currentPosts = itemsCurrentCat.slice(firstPostIndex, lastPostIndex);
 
   useEffect(() => {
     setCurrentPage(1);

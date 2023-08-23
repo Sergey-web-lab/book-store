@@ -18,13 +18,14 @@ const Cart = () => {
   const cartData = useAppSelector(state => state.user.cart);
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.user.cart);
+  console.log(products)
 
-  const addToCart = (index: number, id: number, price: number) => {
+  const addToCart = (index: number, id: number, price: any) => {
     dispatch(addItemToCart(products[index]));
     countIPricePlus(id, price);
   }
 
-  const removeItemFromCart = (index: number, id: number, price: number) => {
+  const removeItemFromCart = (index: number, id: number, price: any) => {
     dispatch(remItemFromCart(products[index]));
     countIPriceMinus(id, price);
   }

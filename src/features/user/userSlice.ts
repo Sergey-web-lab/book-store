@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../utils/constants";
 
@@ -13,77 +13,108 @@ export const createUser = createAsyncThunk('user/createUser',
     }
   })
 
+interface ICurentUser {
+  email?: string
+  id?: string
+  token?: string
+}
+
+export interface IProduct {
+  id: number
+  title?: string
+  author?: string
+  genre?: string
+  image?: string
+  price?: number
+  description?: string
+  fullIPrice?: number
+  quantity?: number
+}
+
+interface IInitialState {
+  currentUser: ICurentUser
+  isAuth: boolean
+  cart: IProduct[]
+  fullCartPrice: number
+  favorites: IProduct[]
+  searchInputVal: string
+}
+
+const initialState: IInitialState = {
+  currentUser: {},
+  isAuth: false,
+  cart: [],
+  fullCartPrice: 0,
+  favorites: [],
+  searchInputVal: ''
+}
+
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    currentUser: {},
-    isAuth: false,
-    cart: [],
-    fullCartPrice: 0,
-    favorites: [],
-    searchInputVal: ''
-  },
+  initialState,
   reducers: {
-    addItemToCart: (state, { payload }) => {
+    addItemToCart: (state, action: PayloadAction<IProduct>) => {
       let newCart = [...state.cart];
       const found = state.cart.find(({ id }) => {
-        return id === payload.id;
+        return id === action.payload.id;
       })
       if (found) {
         newCart = newCart.map(item => {
-          return item.id === payload.id
-            ? { ...item, quantity: item.quantity + 1 }
+          return item.id === action.payload.id
+            ? { ...item, quantity: item.quantity && item.quantity + 1 }
             : item;
         })
       } else {
-        newCart.push({ ...payload, quantity: 1 })
+        newCart.push({ ...action.payload, quantity: 1 })
       }
       state.cart = newCart;
     },
-    remItemFromCart: (state, { payload }) => {
+    remItemFromCart: (state, action: PayloadAction<IProduct>) => {
       let newCart = [...state.cart];
       const found = state.cart.find(({ id }) => {
-        return id === payload.id;
+        return id === action.payload.id;
       })
-      if (found.quantity <= 1) {
-        newCart = state.cart.filter(({ id }) => id !== payload.id);
-      } else {
-        newCart = newCart.map(item => {
-          return item.id === payload.id
-            ? { ...item, quantity: item.quantity <= 0 ? item.quantity = 0 : item.quantity - 1 }
-            : item;
-        })
+      if (found?.quantity) {
+        if (found.quantity <= 1) {
+          newCart = state.cart.filter(({ id }) => id !== action.payload.id);
+        } else {
+          newCart = newCart.map(item => {
+            return item.id === action.payload.id
+              ? { ...item, quantity: item.quantity && item.quantity <= 0 ? item.quantity = 0 : item.quantity && item.quantity - 1 }
+              : item;
+          })
+        }
+        state.cart = newCart;
       }
-      state.cart = newCart;
     },
-    remItemAllFromCart: (state, { payload }) => {
-      state.cart = state.cart.filter(({ id }) => id !== payload.id);
+    remItemAllFromCart: (state, action: PayloadAction<IProduct>) => {
+      state.cart = state.cart.filter(({ id }) => id !== action.payload.id);
     },
-    addFullIPrice: (state, { payload }) => {
-      const { fullIPrice, id } = payload;
+    addFullIPrice: (state, action: PayloadAction<IProduct>) => {
+      const { fullIPrice, id } = action.payload;
       let newCart = [...state.cart];
-      newCart = newCart.map(item => {
+      newCart.map(item => {
         return item.id === id
           && { ...item, fullIPrice: item.fullIPrice = fullIPrice }
       })
     },
-    setSearchInputVal: (state, { payload }) => {
-      state.searchInputVal = payload;
+    setSearchInputVal: (state, action: PayloadAction<string>) => {
+      state.searchInputVal = action.payload;
     },
-    toggleFavorites: (state, { payload }) => {
+    toggleFavorites: (state, action: PayloadAction<IProduct>) => {
       let newFavList = [...state.favorites];
       const found = state.favorites.find(({ id }) => {
-        return id === payload.id;
+        return id === action.payload.id;
       })
       if (found) {
-        newFavList = state.favorites.filter(({ id }) => id !== payload.id);
+        newFavList = state.favorites.filter(({ id }) => id !== action.payload.id);
       } else {
-        newFavList.push({ ...payload });
+        newFavList.push({ ...action.payload });
       }
       state.favorites = newFavList;
     },
-    setUser(state, { payload }) {
-      state.currentUser = payload;
+    setUser(state, action: PayloadAction<object>) {
+      state.currentUser = action.payload;
       state.isAuth = true;
     },
     removeUser(state) {

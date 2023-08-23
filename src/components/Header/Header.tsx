@@ -22,13 +22,17 @@ const Header = () => {
   const { isAuth } = useCheckAuth();
 
   let fullAmount = 0;
-  cartList.forEach((item: { quantity: number; }) => {
-    fullAmount += item.quantity;
+  cartList.forEach((item) => {
+    if (item.quantity) {
+      fullAmount += item.quantity;
+    }
   })
 
   let price = 0;
-  cartList.forEach((item: { fullIPrice: number; }) => {
-    price += item.fullIPrice;
+  cartList.forEach((item) => {
+    if (item.fullIPrice) {
+      price += item.fullIPrice;
+    }
   })
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

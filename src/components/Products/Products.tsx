@@ -2,22 +2,13 @@ import styles from "./Products.module.css";
 import { Link } from "react-router-dom";
 import { Button, Card } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from "../../hooks/reactReduxHooks";
-import { addItemToCart, remItemFromCart, toggleFavorites, addFullIPrice } from "../../features/user/userSlice";
+import { addItemToCart, remItemFromCart, toggleFavorites, addFullIPrice, IProduct } from "../../features/user/userSlice";
 import { ChangeEvent, FC } from "react";
-
-interface IPostsPerPage {
-  id: number
-  image: string
-  title: string
-  author: string
-  genre: string
-  price: number
-}
 
 type ProductsProps = {
   title: string
   style?: {}
-  currentPosts: IPostsPerPage[]
+  currentPosts: IProduct[]
   postsPerPage: number
   setPostsPerPage: (arg: number) => void
   localPostsShowQty: number
@@ -29,15 +20,15 @@ type Founded = {
 
 const Products: FC<ProductsProps> = ({ title, style = {}, currentPosts = [], postsPerPage, setPostsPerPage, localPostsShowQty }) => {
   const dispatch = useAppDispatch();
-  const cartData = useAppSelector(state => state.user.cart);
+  const cartData: IProduct[] = useAppSelector(state => state.user.cart);
   const favData = useAppSelector(state => state.user.favorites);
 
-  const addToCart = (index: number, id: number, price: number) => {
+  const addToCart = (index: number, id: number, price: any) => {
     dispatch(addItemToCart(currentPosts[index]));
     countIPricePlus(id, price);
   }
 
-  const removeItemFromCart = (index: number, id: number, price: number) => {
+  const removeItemFromCart = (index: number, id: number, price: any) => {
     dispatch(remItemFromCart(currentPosts[index]));
     countIPriceMinus(id, price);
   }
@@ -99,7 +90,7 @@ const Products: FC<ProductsProps> = ({ title, style = {}, currentPosts = [], pos
               <Card.Title>{title}</Card.Title>
               <div className="products__product_info">
                 <div className="products__product_info_price">Price now: {price}$</div>
-                <div className="products__product_info_oldPrice">Price before: {Math.floor(price * 1.8)}$</div>
+                <div className="products__product_info_oldPrice">Price before: {Math.floor(price ? price * 1.8 : 0)}$</div>
                 <div className="products__product_info_price">Author: {author}</div>
                 <div className="products__product_info_price">Genre: {genre}</div>
                 <div className="products__product_info_itemsCount">
