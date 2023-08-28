@@ -33,7 +33,7 @@ const Product: FC = (item: any) => {
     if (found === undefined) iCount = 1;
     else {
       const founded: Founded = found;
-      iCount = Number(founded) + 1;
+      iCount = Number(founded.quantity) + 1;
     }
 
     const fullIPrice = price * iCount;

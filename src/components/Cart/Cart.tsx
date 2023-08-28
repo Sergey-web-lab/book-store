@@ -18,7 +18,6 @@ const Cart = () => {
   const cartData = useAppSelector(state => state.user.cart);
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.user.cart);
-  console.log(products)
 
   const addToCart = (index: number, id: number, price: any) => {
     dispatch(addItemToCart(products[index]));
@@ -40,7 +39,7 @@ const Cart = () => {
     if (found === undefined) iCount = 1;
     else {
       const founded: Founded = found;
-      iCount = Number(founded) + 1;
+      iCount = Number(founded.quantity) + 1;
     }
 
     const fullIPrice = price * iCount;

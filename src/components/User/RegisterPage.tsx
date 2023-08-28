@@ -33,7 +33,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="registerPage">
+    <div className={styles.registerPage}>
       <div className={styles.titleWrapper}>
         <h1>Register</h1>
         <img className={styles.img} src={registerImg} alt="register" />

@@ -34,7 +34,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="loginPage">
+    <div className={styles.loginPage}>
       <div className={styles.titleWrapper}>
         <h1>Login</h1>
         <img className={styles.img} src={loginImg} alt="login" />

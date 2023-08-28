@@ -1,10 +1,13 @@
 .orderForm {
   display: flex;
+  flex-wrap: wrap-reverse;
+  margin-bottom: 40px;
   justify-content: center;
-  gap: 40px;
+  gap: 35px;
 }
 
 .orderFormInputBlock {
+  width: 310px;
   padding: 25px;
   border-radius: 25px;
   background: #e8e8e8;
@@ -12,7 +15,6 @@
 }
 
 .orderInfo {
-  margin-top: 40px;
   height: fit-content;
   padding: 25px;
   border-radius: 25px;

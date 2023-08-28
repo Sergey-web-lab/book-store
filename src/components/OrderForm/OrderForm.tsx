@@ -73,7 +73,7 @@ const OrderForm = () => {
               required: "Name is required",
               minLength: { value: 2, message: "Min length is 2" },
               pattern: {
-                value: /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/,
+                value: /^[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я0-9-_\.]{1,20}$/,
                 message: 'Error name format. Еhe first character must be a letter'
               }
             })}

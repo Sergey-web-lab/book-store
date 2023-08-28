@@ -39,7 +39,7 @@ const Products: FC<ProductsProps> = ({ title, style = {}, currentPosts = [], pos
     if (found === undefined) iCount = 1;
     else {
       const founded: Founded = found;
-      iCount = Number(founded) + 1;
+      iCount = Number(founded.quantity) + 1;
     }
 
     const fullIPrice = price * iCount;
@@ -74,7 +74,6 @@ const Products: FC<ProductsProps> = ({ title, style = {}, currentPosts = [], pos
       <div className="products__countShowItems">
         <span>Show </span>
         <select
-          defaultValue={localPostsShowQty}
           value={postsPerPage}
           onChange={e => toggleQtyIToShow(e)}
         >

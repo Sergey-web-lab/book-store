@@ -11,6 +11,11 @@
   height: 55px;
 }
 
+.info {
+  max-width: 696px;
+  margin: 0 auto 16px;
+}
+
 .linkToMainWrapper {
   text-align: center;
   padding-top: 15px;
