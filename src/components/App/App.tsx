@@ -2,11 +2,18 @@ import AppRoutes from "../Routes/Routes";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [genreForFilter, setGenreForFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/');
+  }, [])
 
   return (
     <div className="app">
