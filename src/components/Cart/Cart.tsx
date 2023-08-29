@@ -89,7 +89,7 @@ const Cart = () => {
               <p>Price: {price} $</p>
               <p>Quantity: {quantity}</p>
               <p>Full item cost: {fullIPrice} $</p>
-              <ButtonToolbar aria-label="Toolbar with button groups">
+              <ButtonToolbar className={styles.btnWrapper} aria-label="Toolbar with button groups">
                 <ButtonGroup className="me-2" aria-label="First group">
                   <Button onClick={() => removeItemFromCart(index, id, price)}>-</Button>
                   <Button onClick={() => addToCart(index, id, price)}>+</Button>

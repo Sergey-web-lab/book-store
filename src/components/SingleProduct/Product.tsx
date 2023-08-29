@@ -75,7 +75,7 @@ const Product: FC = (item: any) => {
   return (
     <>
       {!product
-        ? <h2>Loading</h2>
+        ? <h2>Loading...</h2>
         : <div className={styles.product}>
           <div className={styles.imgWrapper}>
             <img className={styles.img} src={`${product.image}`} alt="Product image" />

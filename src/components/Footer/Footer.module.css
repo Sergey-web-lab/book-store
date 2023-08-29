@@ -39,3 +39,11 @@
   align-items: center;
   gap: 10px;
 }
+
+@media (max-width: 420px) {
+  .footer {
+    flex-direction: column-reverse;
+    gap: 20px;
+    padding-top: 30px;
+  }
+}

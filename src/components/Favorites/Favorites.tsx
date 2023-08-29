@@ -33,21 +33,21 @@ const Favorites = () => {
         </>
         : ''}
 
-      {favData.map(({ id, title, image, price }, index) => (
-        <Figure className={styles.item} key={id}>
-          <Figure.Image
-            width={171}
-            height={180}
-            alt={title}
-            src={image}
-          />
-          <Figure.Caption>
-            <h5>{title}</h5>
-            <p>Price: {price} $</p>
-            <Button onClick={() => remFav(index)}>Remove from favorite</Button>
-          </Figure.Caption>
-        </Figure>
-      ))}
+      <div className={styles.itemsWrapper}>
+        {favData.map(({ id, title, image, price }, index) => (
+          <Figure className={styles.item} key={id}>
+            <Figure.Image
+              alt={title}
+              src={image}
+            />
+            <Figure.Caption>
+              <h5>{title}</h5>
+              <p>Price: {price} $</p>
+              <Button className={styles.itemBtn} onClick={() => remFav(index)}>Remove from favorite</Button>
+            </Figure.Caption>
+          </Figure>
+        ))}
+      </div>
     </div>
   );
 }

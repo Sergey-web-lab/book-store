@@ -1,6 +1,8 @@
+import styles from "./IsAuthPage.module.css";
 import { removeUser } from "../../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/reactReduxHooks";
+import Button from 'react-bootstrap/Button';
 
 const IsAuthPage = () => {
   const dispatch = useAppDispatch();
@@ -12,9 +14,9 @@ const IsAuthPage = () => {
   }
 
   return (
-    <div className="isAuthPage">
+    <div className={styles.isAuthPage}>
       <h1>Welcome to user page. If you want change account, click below</h1>
-      <button onClick={ChangeAccount}>Change account</button>
+      <Button variant="primary" onClick={ChangeAccount}>Change account</Button>
     </div>
   );
 }

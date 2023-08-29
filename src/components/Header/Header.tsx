@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { setSearchInputVal } from "../../features/user/userSlice";
 import { useCheckAuth } from "../../hooks/useCheckAuth";
-import DarkMode from "../DarkMode/DarkMode";
-import Form from 'react-bootstrap/Form';
 import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reactReduxHooks";
+import DarkMode from "../DarkMode/DarkMode";
+import Form from 'react-bootstrap/Form';
+import OffcanvasC from "../Offcanvas/OffcanvasC";
 
 type UserInfo = {
   email?: string
@@ -68,16 +69,16 @@ const Header = () => {
         <div className="header__info_linkToInfo">
           <DarkMode />
         </div>
-        <div className="header__info_linkToInfo">
+        <div className={styles.mobileHidden}>
           <Link to={ROUTES.INFO}>Info</Link>
         </div>
-        <div className="header__info_linkToFavorites">
+        <div className={styles.mobileHidden}>
           <Link to={ROUTES.FAVORITES}>Favorites</Link>
           {favList.length === 0
             ? ''
             : <div className="header__info_favoritesAmount">All: {favList.length}</div>}
         </div>
-        <div className="header__info_linkToCart">
+        <div className={styles.mobileHidden}>
           <Link to={ROUTES.CART}>Cart</Link>
           {cartList.length === 0
             ? ''
@@ -86,6 +87,9 @@ const Header = () => {
               <div className="cartAmount">All price: {price}$</div>
             </>)}
         </div>
+      </div>
+      <div className={styles.menu}>
+        <OffcanvasC />
       </div>
     </header>
   );

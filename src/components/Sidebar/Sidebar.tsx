@@ -9,6 +9,7 @@ import { FC } from "react";
 import { useGetCategoriesQuery } from "../../features/api/apiSlice";
 import { useNavigate } from "react-router-dom";
 import Badge from 'react-bootstrap/Badge';
+import AccordionC from "./AccordionC";
 
 type SidebarProps = {
   setGenreForFilter: (arg: string) => void
@@ -32,18 +33,23 @@ const Sidebar: FC<SidebarProps> = ({ setGenreForFilter, setCurrentPage }) => {
 
   return (
     <section className="sidebar">
-      <div className="sidebar__title">CATEGORIES</div>
-      <nav>
-        <ul className={styles.listItemsCat}>
-          {list.map(({ id, title }) => (
-            <li className={styles.itemCat} key={id} onClick={() => handleSetCat(title)}>
-              <img className={styles.img} src={iconList[id - 1]} alt={title} /><Badge bg="secondary">{title}</Badge>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div className="sidebar__footer">
+      <div className={styles.categoriesWrapper}>
+        <div className="sidebar__title">CATEGORIES</div>
+        <nav>
+          <ul className={styles.listItemsCat}>
+            {list.map(({ id, title }) => (
+              <li className={styles.itemCat} key={id} onClick={() => handleSetCat(title)}>
+                <img className={styles.img} src={iconList[id - 1]} alt={title} /><Badge bg="secondary">{title}</Badge>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
+      <AccordionC
+        list={list}
+        setGenreForFilter={setGenreForFilter}
+        setCurrentPage={setCurrentPage}
+      />
     </section>
   );
 }

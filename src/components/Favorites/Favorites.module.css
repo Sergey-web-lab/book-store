@@ -1,7 +1,19 @@
+.itemsWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
 .item {
   display: flex;
   gap: 40px;
+  width: 200px;
   margin-top: 25px;
+}
+
+.itemBtn {
+  width: 100%;
 }
 
 .alert {
