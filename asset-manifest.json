@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/book-store/static/css/main.df3f8703.css",
+    "main.js": "/book-store/static/js/main.069078e9.js",
+    "static/media/horror.png": "/book-store/static/media/horror.4591a25761f31de8f8c3.png",
+    "static/media/romance.png": "/book-store/static/media/romance.490f6f201e218df7ce27.png",
+    "static/media/detective.png": "/book-store/static/media/detective.bba8c05f7b17fb20bf15.png",
+    "static/media/login.png": "/book-store/static/media/login.6b2d17e8f1262b9aa426.png",
+    "static/media/fantasy.png": "/book-store/static/media/fantasy.54e75b5d40fa404d46b2.png",
+    "static/media/fairy-tale.png": "/book-store/static/media/fairy-tale.3f3ac606d7283b2c4de7.png",
+    "static/media/Sun.svg": "/book-store/static/media/Sun.681607dcda2a01539a9a8a157ae74e6e.svg",
+    "static/media/Moon.svg": "/book-store/static/media/Moon.0a6a2b75ac51157455302ddcfca385c0.svg",
+    "index.html": "/book-store/index.html",
+    "main.df3f8703.css.map": "/book-store/static/css/main.df3f8703.css.map",
+    "main.069078e9.js.map": "/book-store/static/js/main.069078e9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df3f8703.css",
+    "static/js/main.069078e9.js"
+  ]
+}
