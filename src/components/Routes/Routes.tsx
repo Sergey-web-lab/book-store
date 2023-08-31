@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../Home/Home";
 import { ROUTES } from "../../utils/routes";
+import { FC } from "react";
+import Home from "../Home/Home";
 import SingleProduct from "../SingleProduct/SingleProduct";
 import LoginPage from "../User/LoginPage";
 import RegisterPage from "../User/RegisterPage";
@@ -9,7 +10,7 @@ import Info from "../Info/Info";
 import Cart from "../Cart/Cart";
 import Favorites from "../Favorites/Favorites";
 import OrderForm from "../OrderForm/OrderForm";
-import { FC } from "react";
+import NotFound from "../NotFound/NotFound";
 
 type AppRoutesProps = {
   genreForFilter: string
@@ -25,6 +26,11 @@ const AppRoutes: FC<AppRoutesProps> = ({ genreForFilter, currentPage, setCurrent
           currentPage={currentPage}
           setCurrentPage={setCurrentPage} />
       } />
+      <Route path={ROUTES.HOMEGHPAGES} element={< Home
+        genreForFilter={genreForFilter}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />} />
       <Route path={ROUTES.PRODUCT} element={<SingleProduct />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
@@ -33,6 +39,7 @@ const AppRoutes: FC<AppRoutesProps> = ({ genreForFilter, currentPage, setCurrent
       <Route path={ROUTES.INFO} element={<Info />} />
       <Route path={ROUTES.FAVORITES} element={<Favorites />} />
       <Route path={ROUTES.ORDERFORM} element={<OrderForm />} />
+      <Route path={ROUTES.NOTFOUND} element={<NotFound />} />
     </Routes>
   );
 }

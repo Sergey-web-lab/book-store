@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME: '/',
+  HOMEGHPAGES: '/book-store',
   LOGIN: '/login',
   REGISTER: '/register',
   ISAUTHPAGE: '/is-auth-page',
@@ -8,5 +9,6 @@ export const ROUTES = {
   FAVORITES: '/favorites',
   CATEGORY: '/categories/:id',
   PRODUCT: '/items/:id',
-  ORDERFORM: '/order-form'
+  ORDERFORM: '/order-form',
+  NOTFOUND: '*'
 }

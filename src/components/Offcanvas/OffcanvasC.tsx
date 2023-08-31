@@ -37,13 +37,13 @@ const OffcanvasC = () => {
         User menu
       </Button>
 
-      <Offcanvas show={show} onHide={handleClose} placement='top' scroll={scroll}>
+      <Offcanvas className={styles.offcanvas} show={show} onHide={handleClose} placement='top' scroll={scroll}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
             <h1>User menu</h1>
           </Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas.Body className={styles.offcanvasBody}>
           <div className={styles.info}>
             <div className="header__info_linkToInfo">
               <Link onClick={handleClose} to={ROUTES.INFO}>Info</Link>

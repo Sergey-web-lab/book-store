@@ -8,3 +8,13 @@
   gap: 15px;
   font-size: 25px;
 }
+
+.offcanvas {
+  height: 60% !important;
+}
+
+.offcanvasBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
