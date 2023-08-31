@@ -1,0 +1,395 @@
+const items = [
+  {
+    "id": 1,
+    "title": "Тигровый, чёрный, золотой",
+    "author": "Елена Михалкова",
+    "genre": "detective",
+    "image": "https://sun9-31.userapi.com/impg/1kp8oqrupcm9sagHlnVk6UuqK26QbfRS_-2Lhg/hythjDU0dvE.jpg?size=415x653&quality=95&sign=81a25783eff0d881a4e836262a54387c&type=album",
+    "price": 700,
+    "description": "item 1 descr"
+  },
+  {
+    "id": 2,
+    "title": "Собачка Соня на даче",
+    "author": "Андрей Усачев",
+    "genre": "fairy tale",
+    "image": "https://sun9-37.userapi.com/impg/qhUswGBs3haLesTFhnPT1vc0xdrqcCg5d2mCBA/sBO0oGfv2B4.jpg?size=415x652&quality=95&sign=a664988d64b9c172b96c181693b5b609&type=album",
+    "price": 300,
+    "description": "item 2 descr"
+  },
+  {
+    "id": 3,
+    "title": "Лисья тень",
+    "author": "Джули Кагава",
+    "genre": "fantasy",
+    "image": "https://sun9-69.userapi.com/impg/NgNz4Npr3liD5iJ-b75evDcbXho-5bGqQVHhuQ/dFZH1DdY33Q.jpg?size=415x622&quality=95&sign=7508fc9a3d50671d5de2cb6169884145&type=album",
+    "price": 600,
+    "description": "item 3 descr"
+  },
+  {
+    "id": 4,
+    "title": "Самая белая ночь",
+    "author": "Ася Лавринович",
+    "genre": "romance",
+    "image": "https://sun9-75.userapi.com/impg/n8OzXYvilAM9qFepZzvj1X_jIRWVGRu2wS12Bg/Mxxv_gSW9qw.jpg?size=415x658&quality=95&sign=9f2bd2913a7e094edcb32244ecf2b21a&type=album",
+    "price": 500,
+    "description": "item 4 descr"
+  },
+  {
+    "id": 5,
+    "title": "Загадочное исчезновение",
+    "author": "Амброз Бирс",
+    "genre": "horror",
+    "image": "https://sun9-77.userapi.com/impg/HunkCjLwP0-ZlBG08E2z1jl_tRSkqnCz_hAxGA/QUzyMCnyonY.jpg?size=415x689&quality=95&sign=5b90b0b86088d765b912a09083f868ea&type=album",
+    "price": 700,
+    "description": "item 5 descr"
+  },
+  {
+    "id": 6,
+    "title": "Обитель",
+    "author": "Максим Сонин",
+    "genre": "detective",
+    "image": "https://sun9-60.userapi.com/impg/ryvjLrU26AL8oSu5n-4s9xF5GVLWtsKrZTX_nA/1DYURPP8oLo.jpg?size=415x622&quality=95&sign=39adcab5917648ae784708d3790a8a29&type=album",
+    "price": 400,
+    "description": "item 6 descr"
+  },
+  {
+    "id": 7,
+    "title": "Красная шапочка",
+    "author": "Беатрис Поттер",
+    "genre": "fairy tale",
+    "image": "https://sun9-80.userapi.com/impg/h7mGCUyxvWQ3jbwdR5R6M5PyBYuLEtUNV9nT2g/2wQN27Jsev0.jpg?size=415x554&quality=95&sign=834c4cd5e8f31eea5e06b4176d600006&type=album",
+    "price": 300,
+    "description": "item 7 descr"
+  },
+  {
+    "id": 8,
+    "title": "Доминум Эквилибрис (2 книга)",
+    "author": "Полина Граф",
+    "genre": "fantasy",
+    "image": "https://sun9-55.userapi.com/impg/3wZNhCkULGsz_OneYJQjInOIC2p2AIpVWfFgMw/2LDtPZTNzDg.jpg?size=415x623&quality=95&sign=f78f965f0e4192d13e88468bc9cddb75&type=album",
+    "price": 200,
+    "description": "item 8 descr"
+  },
+  {
+    "id": 9,
+    "title": "Тысяча поцелуев",
+    "author": "Тилли Коул",
+    "genre": "romance",
+    "image": "https://sun9-77.userapi.com/impg/fzM19dQDWVhg0Qx6uUDFZw5zeBLriuVbpHf8tw/aQpJFNLuhho.jpg?size=415x652&quality=95&sign=5f7a4ec5d15dc65c9ef11da98c302fed&type=album",
+    "price": 400,
+    "description": "item 9 descr"
+  },
+  {
+    "id": 10,
+    "title": "Five Nights at Freddy's - Ужасы Фазбера. В бассейн!",
+    "author": "Скотт Коутон, Элли Купер",
+    "genre": "horror",
+    "image": "https://sun9-58.userapi.com/impg/3l7g5r4Th0qAvfFM0xdAievIta8x7aK9aANctg/MKX0LNQuWDE.jpg?size=415x654&quality=95&sign=c2e1ac359678eab48c75f888ad9e5803&type=album",
+    "price": 700,
+    "description": "item 10 descr"
+  },
+  {
+    "id": 11,
+    "title": "Человек, который умер дважды",
+    "author": "Ричард Осман",
+    "genre": "detective",
+    "image": "https://sun9-43.userapi.com/impg/YXhIlcb8SQUdsNmiTzukuwn8IgXSVCNROUwpbA/ZJ1mmYZ4Yn4.jpg?size=415x658&quality=95&sign=25ab1da896fe26c1c59a091d96b37088&type=album",
+    "price": 800,
+    "description": "item 11 descr"
+  },
+  {
+    "id": 12,
+    "title": "Волшебник изумрудного города",
+    "author": "Александр Волков",
+    "genre": "fairy tale",
+    "image": "https://sun9-2.userapi.com/impg/2g9HL9G1FCKVYbg-w2JttM-BjfiBeP8_qXQAhw/pTUeWhTZsgU.jpg?size=415x577&quality=95&sign=10ef8334234e8bb8c0553367018b5d27&type=album",
+    "price": 900,
+    "description": "item 12 descr"
+  },
+  {
+    "id": 13,
+    "title": "Зов Ктулху",
+    "author": "Говард Филлипс Лавкрафт",
+    "genre": "horror",
+    "image": "https://sun9-19.userapi.com/impg/c1ySuF_PbNEBrVxftS9LDr1JQOPY7vqpIs5qJw/uU3VN0lxPqk.jpg?size=415x670&quality=95&sign=e25e904ccca673d03046df65d57e3463&type=album",
+    "price": 600,
+    "description": "item 13 descr"
+  },
+  {
+    "id": 14,
+    "title": "Из моего окна",
+    "author": "Ариана Годой",
+    "genre": "romance",
+    "image": "https://sun9-30.userapi.com/impg/Nfr0DQVQuuwuvc173ebx-aCGgycFrUZtTa3VKA/oS4gAOFkq9g.jpg?size=415x653&quality=95&sign=5edf91942b4ea60369f30c72f3256342&type=album",
+    "price": 400,
+    "description": "item 14 descr"
+  },
+  {
+    "id": 15,
+    "title": "Самая хитрая рыба",
+    "author": "Елена Михалкова",
+    "genre": "detective",
+    "image": "https://sun9-34.userapi.com/impg/O3LUF2WUyw5WGBfTr0UBwP3wHvuYXdR8xLKaFg/IPLbVjMdQmU.jpg?size=415x653&quality=95&sign=8853e93399ccaed64484b30539a9758d&type=album",
+    "price": 500,
+    "description": "item 15 descr"
+  },
+  {
+    "id": 16,
+    "title": "Русалочка",
+    "author": "Том Андерсон",
+    "genre": "fairy tale",
+    "image": "https://sun9-28.userapi.com/impg/9uPg21ki9OEOdu8uQNkwig1MnxOpMtve0kdXBA/IjUyPP5UTuE.jpg?size=415x556&quality=95&sign=d89bf184075479c2cf81e4398b68470f&type=album",
+    "price": 300,
+    "description": "item 16 descr"
+  },
+  {
+    "id": 17,
+    "title": "Стеллар Трибут",
+    "author": "Роман Прокофьев",
+    "genre": "fantasy",
+    "image": "https://sun9-53.userapi.com/impg/WGLbm1YxdmziZMHvI5kfGiD7Y638k7hf1lAZbA/riTw14K45AA.jpg?size=415x587&quality=95&sign=13167245e673cf374d7e0de8422693c9&type=album",
+    "price": 400,
+    "description": "item 17 descr"
+  },
+  {
+    "id": 18,
+    "title": "Гретель и её бесы",
+    "author": "Герман и Тамара Рыльские",
+    "genre": "horror",
+    "image": "https://sun9-44.userapi.com/impg/F6SdI10D7nvPW2QPzYoyX7jF4wR1MmXXH9ApFg/nFzFuczC37Q.jpg?size=415x634&quality=95&sign=c53924ea1fea7ad234f4930bf7238a4a&type=album",
+    "price": 700,
+    "description": "item 18 descr"
+  },
+  {
+    "id": 19,
+    "title": "Мы над океаном",
+    "author": "Янина Логвин",
+    "genre": "romance",
+    "image": "https://sun9-56.userapi.com/impg/GmrZKTir51D7W273cAOi1vYWlkY88TNZ9KRVXg/hNe2VzjqOJ0.jpg?size=415x593&quality=95&sign=af7ca0125c722b033ee2da236bdd1ad1&type=album",
+    "price": 700,
+    "description": "item 19 descr"
+  },
+  {
+    "id": 20,
+    "title": "Звёздная кровь (1 книга)",
+    "author": "Роман Прокофьев",
+    "genre": "fantasy",
+    "image": "https://sun9-27.userapi.com/impg/iObDaQN5b4gU3sFS4jk4EEEft_BQOI717crV7w/OmygqrkE7Y4.jpg?size=415x623&quality=95&sign=9196f47c25fdfe2b1c9600307bc0bced&type=album",
+    "price": 900,
+    "description": "item 20 descr"
+  },
+  {
+    "id": 21,
+    "title": "Колесницы судьбы",
+    "author": "Анна и Сергей Литвиновы",
+    "genre": "detective",
+    "image": "https://sun9-47.userapi.com/impg/9xgLY_4icNXTESeGQajJJLFEMmopysWXeMANUg/v4c6g0Mx6JQ.jpg?size=415x658&quality=95&sign=fb09f7fa851bdf4e86b5d5575828cb12&type=album",
+    "price": 700,
+    "description": "item 21 descr"
+  },
+  {
+    "id": 22,
+    "title": "Алиса в стране чудес",
+    "author": "Льюис Кэррол",
+    "genre": "fairy tale",
+    "image": "https://sun9-26.userapi.com/impg/6ujhBY_tZcwl3kFIZYhmahEDdN3v6Al9K6chjQ/Wq1GGTDY4lY.jpg?size=415x557&quality=95&sign=c82d47987c592f9cedfc398af55cb2a4&type=album",
+    "price": 300,
+    "description": "item 22 descr"
+  },
+  {
+    "id": 23,
+    "title": "Сергей Лукьяненко",
+    "author": "Прыжок",
+    "genre": "fantasy",
+    "image": "https://sun9-1.userapi.com/impg/zZTb0W_dTZi7BF9VD99OCk_vsP-_UsYAQGZj4w/plXFTx4DuBo.jpg?size=415x644&quality=95&sign=c89bba30abef26227ab6ab350512bbd3&type=album",
+    "price": 600,
+    "description": "item 23 descr"
+  },
+  {
+    "id": 24,
+    "title": "Кафе \"Берлин\"",
+    "author": "Татьяна М.А.",
+    "genre": "romance",
+    "image": "https://sun9-69.userapi.com/impg/00WfAJzvR75KFSJ0vPoBBPVkZ2e3nPd6RZLVfg/zST5mZQJWcM.jpg?size=415x593&quality=95&sign=571692283ad37628442e1ff3a2b349fc&type=album",
+    "price": 500,
+    "description": "item 24 descr"
+  },
+  {
+    "id": 25,
+    "title": "Татьяна Мастрюкова",
+    "author": "Болотница",
+    "genre": "horror",
+    "image": "https://sun9-60.userapi.com/impg/Z79vXOAMI1ZjOWXVicWZ06xnVGt3RC4BO8zvlg/B8NghwJ7KMo.jpg?size=415x615&quality=95&sign=79da7b394bac658ebae024d430fc3538&type=album",
+    "price": 700,
+    "description": "item 25 descr"
+  },
+  {
+    "id": 26,
+    "title": "Судьба по книге перемен",
+    "author": "Татьяна Устинова",
+    "genre": "detective",
+    "image": "https://sun9-6.userapi.com/impg/DOQAvtpXmR9-t_e4paltQ6mhuDaYt8TZ0C_E7g/RqMxaefbzwM.jpg?size=415x652&quality=95&sign=7f1517b7f2c395cc17901a707e456b17&type=album",
+    "price": 400,
+    "description": "item 26 descr"
+  },
+  {
+    "id": 27,
+    "title": "Печенье счастья",
+    "author": "Черстин Лундберг Хан",
+    "genre": "fairy tale",
+    "image": "https://sun9-30.userapi.com/impg/-DcLAbZpPVklMzJgiW-uaKVZTlGrCDUClDwTdQ/Yd9o8yXexCI.jpg?size=415x587&quality=95&sign=69a47b1d6e6e9a925b0b9530dce827c7&type=album",
+    "price": 300,
+    "description": "item 27 descr"
+  },
+  {
+    "id": 28,
+    "title": "Платформа",
+    "author": "Роджер Леви",
+    "genre": "fantasy",
+    "image": "https://sun9-73.userapi.com/impg/fit4daAcr-FhGZ_n423EIdFuOtSmGBGeGqzeQQ/tJN7UUaSJs8.jpg?size=415x670&quality=95&sign=20449aa9b4e3e99194a64d0d37976bca&type=album",
+    "price": 200,
+    "description": "item 28 descr"
+  },
+  {
+    "id": 29,
+    "title": "Незапертая дверь",
+    "author": "Мария Метлицкая",
+    "genre": "romance",
+    "image": "https://sun9-72.userapi.com/impg/wugJfzB5v-44yXgMZ66R0pbRswQ3D7lQ8llNbA/ZywXkGff8Hg.jpg?size=415x655&quality=95&sign=547d8529cf4c0a604c221d1c7a5f19c4&type=album",
+    "price": 400,
+    "description": "item 29 descr"
+  },
+  {
+    "id": 30,
+    "title": "Люди зимы",
+    "author": "Дженнифер Макмахон",
+    "genre": "horror",
+    "image": "https://sun9-51.userapi.com/impg/yMK_8oyzjEDAlApmpFe70jG0p-A-Z3Ks-jx_QA/n4Y3jDNicP4.jpg?size=415x621&quality=95&sign=345135a28ef160f1da110d14baaad13e&type=album",
+    "price": 700,
+    "description": "item 30 descr"
+  },
+  {
+    "id": 31,
+    "title": "Чёрные кувшинки",
+    "author": "Мишель Бюсси",
+    "genre": "detective",
+    "image": "https://sun9-30.userapi.com/impg/-9c927y5Xg9qzd8I1wvIyqDuoYFan4hNM8R-BA/VxuyMsonMzs.jpg?size=415x647&quality=95&sign=ae8e0534f23b3ca18dcffdd4a62bd560&type=album",
+    "price": 800,
+    "description": "item 31 descr"
+  },
+  {
+    "id": 32,
+    "title": "Рожденственский поросёнок",
+    "author": "Дж. К. Роулинг",
+    "genre": "fairy tale",
+    "image": "https://sun9-33.userapi.com/impg/Qc8BdoyUT_zUDVuGl_K3D7JIrhywTQVKKL9o1Q/szRBcm8K7xk.jpg?size=415x636&quality=95&sign=eaa15e15666fe3dd13a1b4001714adf5&type=album",
+    "price": 900,
+    "description": "item 32 descr"
+  },
+  {
+    "id": 33,
+    "title": "Добро пожаловать в Гиблые Холмы",
+    "author": "Виктор Кабицкий",
+    "genre": "horror",
+    "image": "https://sun9-43.userapi.com/impg/jDEd7j_7IPqT-P9iewnGUXz-nLlqHpDfW88JfQ/DBdntDHygqI.jpg?size=415x593&quality=95&sign=adb8fb3ef6b1871ea943cae32329ba47&type=album",
+    "price": 600,
+    "description": "item 33 descr"
+  },
+  {
+    "id": 34,
+    "title": "Невеста на уикенд",
+    "author": "Юлия Цыплёнкова",
+    "genre": "romance",
+    "image": "https://sun9-15.userapi.com/impg/5aMzxGbO5VSorcR29sqZye6U2PunseyJuW-dag/Q1Z-znuaQLI.jpg?size=415x593&quality=95&sign=31d2ae0579ca505b7a651c17e2e4a667&type=album",
+    "price": 400,
+    "description": "item 34 descr"
+  },
+  {
+    "id": 35,
+    "title": "Швейцарский счёт",
+    "author": "Елена Саулите",
+    "genre": "detective",
+    "image": "https://sun9-71.userapi.com/impg/dJrlDKTKhsWeV3vG2GvSG2GeCKSy-wbLWP6JrA/pHqISqdynCc.jpg?size=415x593&quality=95&sign=fd3124915a6a154a6156f1aff83b3fb8&type=album",
+    "price": 500,
+    "description": "item 35 descr"
+  },
+  {
+    "id": 36,
+    "title": "Сумеречный сказ",
+    "author": "Кайса Локин",
+    "genre": "fairy tale",
+    "image": "https://sun9-62.userapi.com/impg/3AKZ3c6-tycgtLBO4fq5w9fNjrrtPrNjIF4O3g/2tYCXd8QTP8.jpg?size=415x652&quality=95&sign=4d13932efa081fa5a963e6fbcdd44e73&type=album",
+    "price": 300,
+    "description": "item 36 descr"
+  },
+  {
+    "id": 37,
+    "title": "Порог",
+    "author": "Сергей Лукьяненко",
+    "genre": "fantasy",
+    "image": "https://sun9-73.userapi.com/impg/crUpwCmhRccD-5MX1p3bfCAT4MQnx_71amX_KA/irKrlB9SF38.jpg?size=415x644&quality=95&sign=949d9fc2f333e5537efaab58be9de3db&type=album",
+    "price": 400,
+    "description": "item 37 descr"
+  },
+  {
+    "id": 38,
+    "title": "Носферату",
+    "author": "Джо Хилл",
+    "genre": "horror",
+    "image": "https://sun9-34.userapi.com/impg/9RTWV5vDRlzM3lu00AV-mOJDif4gNoypAxKtmw/ga2034aS4t0.jpg?size=415x653&quality=95&sign=b35d9d4db9151dfb5ad7e48118f3a037&type=album",
+    "price": 700,
+    "description": "item 38 descr"
+  },
+  {
+    "id": 39,
+    "title": "Избушка для двоих",
+    "author": "Елена Рейн",
+    "genre": "romance",
+    "image": "https://sun9-26.userapi.com/impg/FQhXX0YRSLgA1yISzSH6T5KpETqGnZ8QcluvUQ/xY4yOZoToO4.jpg?size=415x589&quality=95&sign=f21f843637621fc6f3527e54ae14d7cc&type=album",
+    "price": 700,
+    "description": "item 39 descr"
+  },
+  {
+    "id": 40,
+    "title": "Стеллар Эфемер",
+    "author": "Роман Прокофьев",
+    "genre": "fantasy",
+    "image": "https://sun9-79.userapi.com/impg/eyw0RDhIxBKaeLzmLX21fNO2gMrVnUovK_GM0Q/yS4BzCgitFo.jpg?size=415x587&quality=95&sign=feccc11a8f6d2a90fc657b9e15eeb7ae&type=album",
+    "price": 900,
+    "description": "item 40 descr"
+  }
+];
+
+const categories = [
+  {
+    "id": 1,
+    "title": "All",
+    "description": "All category descr"
+  },
+  {
+    "id": 2,
+    "title": "Fantasy",
+    "description": "Fantasy category descr"
+  },
+  {
+    "id": 3,
+    "title": "Romance",
+    "description": "Romance category descr"
+  },
+  {
+    "id": 4,
+    "title": "Fairy tale",
+    "description": "Fairy tale category descr"
+  },
+  {
+    "id": 5,
+    "title": "Horror",
+    "description": "Horror category descr"
+  },
+  {
+    "id": 6,
+    "title": "Detective",
+    "description": "Detective category descr"
+  }
+];
