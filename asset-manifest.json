@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/book-store/static/css/main.7f17f347.css",
-    "main.js": "/book-store/static/js/main.0601963f.js",
+    "main.css": "/book-store/static/css/main.335c83d6.css",
+    "main.js": "/book-store/static/js/main.8e4cc1b3.js",
     "static/media/horror.png": "/book-store/static/media/horror.4591a25761f31de8f8c3.png",
     "static/media/romance.png": "/book-store/static/media/romance.490f6f201e218df7ce27.png",
     "static/media/detective.png": "/book-store/static/media/detective.bba8c05f7b17fb20bf15.png",
@@ -11,11 +11,11 @@
     "static/media/Sun.svg": "/book-store/static/media/Sun.681607dcda2a01539a9a8a157ae74e6e.svg",
     "static/media/Moon.svg": "/book-store/static/media/Moon.0a6a2b75ac51157455302ddcfca385c0.svg",
     "index.html": "/book-store/index.html",
-    "main.7f17f347.css.map": "/book-store/static/css/main.7f17f347.css.map",
-    "main.0601963f.js.map": "/book-store/static/js/main.0601963f.js.map"
+    "main.335c83d6.css.map": "/book-store/static/css/main.335c83d6.css.map",
+    "main.8e4cc1b3.js.map": "/book-store/static/js/main.8e4cc1b3.js.map"
   },
   "entrypoints": [
-    "static/css/main.7f17f347.css",
-    "static/js/main.0601963f.js"
+    "static/css/main.335c83d6.css",
+    "static/js/main.8e4cc1b3.js"
   ]
 }
