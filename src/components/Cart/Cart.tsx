@@ -65,45 +65,51 @@ const Cart = () => {
         <h1>Cart</h1>
         <img className={styles.img} src={cartImg} alt="cart" />
       </div>
-      {products.length == 0
-        ?
-        <>
-          <Alert className={styles.alert} variant="info">
-            <Alert.Heading>Cart is empty</Alert.Heading>
-          </Alert>
-          <div className={styles.linkToMainWrapper}>
-            <Link className={styles.linkToMain} to={ROUTES.HOME}>Back to Main</Link>
-          </div>
-        </>
-        :
-        products.map(({ id, title, image, price, quantity, fullIPrice }, index) => (
-          <Figure className={styles.item} key={id}>
-            <Figure.Image
-              width={171}
-              height={180}
-              alt={title}
-              src={image}
-            />
-            <Figure.Caption>
-              <h5>{title}</h5>
-              <p>Price: {price} $</p>
-              <p>Quantity: {quantity}</p>
-              <p>Full item cost: {fullIPrice} $</p>
-              <ButtonToolbar className={styles.btnWrapper} aria-label="Toolbar with button groups">
-                <ButtonGroup className="me-2" aria-label="First group">
-                  <Button onClick={() => removeItemFromCart(index, id, price)}>-</Button>
-                  <Button onClick={() => addToCart(index, id, price)}>+</Button>
-                </ButtonGroup>
-                <ButtonGroup aria-label="Second group">
-                  <Button onClick={() => removeItemAllFromCart(index)}>x</Button>
-                </ButtonGroup>
-              </ButtonToolbar>
-            </Figure.Caption>
-          </Figure>
-        ))
-      }
-      {products.length != 0
-        && <Link className={styles.linkToForm} to={ROUTES.ORDERFORM}>Make an order</Link>}
+      <div className={styles.main}>
+        <div className="cart__products">
+          {products.length == 0
+            ?
+            <>
+              <Alert className={styles.alert} variant="info">
+                <Alert.Heading>Cart is empty</Alert.Heading>
+              </Alert>
+              <div className={styles.linkToMainWrapper}>
+                <Link className={styles.linkToMain} to={ROUTES.HOMEGHPAGES}>Back to Main</Link>
+              </div>
+            </>
+            :
+            products.map(({ id, title, image, price, quantity, fullIPrice }, index) => (
+              <Figure className={styles.item} key={id}>
+                <Figure.Image
+                  width={171}
+                  height={180}
+                  alt={title}
+                  src={image}
+                />
+                <Figure.Caption>
+                  <h5>{title}</h5>
+                  <p>Price: {price} $</p>
+                  <p>Quantity: {quantity}</p>
+                  <p>Full item cost: {fullIPrice} $</p>
+                  <ButtonToolbar className={styles.btnWrapper} aria-label="Toolbar with button groups">
+                    <ButtonGroup className="me-2" aria-label="First group">
+                      <Button onClick={() => removeItemFromCart(index, id, price)}>-</Button>
+                      <Button onClick={() => addToCart(index, id, price)}>+</Button>
+                    </ButtonGroup>
+                    <ButtonGroup aria-label="Second group">
+                      <Button onClick={() => removeItemAllFromCart(index)}>x</Button>
+                    </ButtonGroup>
+                  </ButtonToolbar>
+                </Figure.Caption>
+              </Figure>
+            ))
+          }
+        </div>
+        <div className={styles.linkToForm__wrapper}>
+          {products.length != 0
+            && <Link className={styles.linkToForm} to={ROUTES.ORDERFORM}>Make an order</Link>}
+        </div>
+      </div>
     </div>
   );
 }

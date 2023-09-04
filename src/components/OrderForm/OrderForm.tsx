@@ -6,6 +6,7 @@ import { ROUTES } from "../../utils/routes";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useAppSelector } from "../../hooks/reactReduxHooks";
+import { Button } from "react-bootstrap";
 
 const OrderForm = () => {
   enum DelivOrNotEnum {
@@ -163,11 +164,11 @@ const OrderForm = () => {
             <p>10.00 - 19.00 everyday except holidays.</p>
           </>}
         <div className={styles.btnsWrapper}>
-          <button className={styles.btn}>Submit</button>
+          <Button className={styles.btn}>Submit</Button>
           <input
             className={styles.resetBtn}
             type="button"
-            value="Reset Field Values"
+            value="Reset Fields Values"
             onClick={() => {
               reset(
                 {

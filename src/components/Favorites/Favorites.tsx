@@ -28,7 +28,7 @@ const Favorites = () => {
             <Alert.Heading>Favorites list is empty</Alert.Heading>
           </Alert>
           <div className={styles.linkToMainWrapper}>
-            <Link className={styles.linkToMain} to={ROUTES.HOME}>Back to Main</Link>
+            <Link className={styles.linkToMain} to={ROUTES.HOMEGHPAGES}>Back to Main</Link>
           </div>
         </>
         : ''}

@@ -9,6 +9,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FC } from "react";
+import { ROUTES } from "../../utils/routes";
 
 type AccordionCProps = {
   list: []
@@ -26,7 +27,7 @@ const AccordionC: FC<AccordionCProps> = ({ list, setGenreForFilter, setCurrentPa
   const handleSetCat = (title: string) => {
     setGenreForFilter(title);
     setCurrentPage(1);
-    navigate('/');
+    navigate(`${ROUTES.HOMEGHPAGES}`);
   }
 
   return (

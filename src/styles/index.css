@@ -8,12 +8,16 @@ body {
 }
 
 [data-theme='dark'] {
-  background: #1D2B64;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #F8CDDA, #1D2B64);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #F8CDDA, #1D2B64);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #212121;
+  color: #e8e8e8;
+}
+
+[data-theme='dark'] .Header_header__RaIlT {
+  background: #1a1a1a;
+}
+
+[data-theme='dark'] .Footer_footer__dYp6m {
+  background: #1a1a1a;
 }
 
 a {
@@ -21,8 +25,59 @@ a {
   border-bottom: 2px solid #12D8FA;
 }
 
+[data-theme='dark'] a {
+  color: #e8e8e8;
+  text-decoration: none;
+  border-bottom: 2px solid #7cb342;
+}
+
+[data-theme='dark'] button {
+  transition: 0.3s;
+  background: #7a00ff;
+}
+
+[data-theme='dark'] button:hover {
+  background: #490d89;
+}
+
+[data-theme='dark'] button:active {
+  background: #fbc02d;
+}
+
+[data-theme='dark'] .page-item.active .page-link {
+  background: #490d89;
+  color: #ffffec;
+}
+
+[data-theme='dark'] .page-link {
+  color: #1a1a1a;
+}
+
+[data-theme='dark'] .OrderForm_orderInfo__A3FN0 {
+  color: #000;
+}
+
+[data-theme='dark'] .OrderForm_orderInfo__A3FN0 a {
+  background: #7a00ff;
+}
+
+[data-theme='dark'] .OrderForm_orderFormInputBlock__uPEpf {
+  background: #1a1a1a;
+  color: #dee2e6;
+}
+
+[data-theme='dark'] .tooltip-inner {
+  color: white;
+  background: black;
+}
+
 .container {
   min-height: 100vh;
+}
+
+.tooltip-inner {
+  color: black;
+  background: white;
 }
 
 .err {

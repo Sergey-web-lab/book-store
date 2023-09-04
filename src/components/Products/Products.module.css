@@ -6,6 +6,11 @@
   margin-top: 25px;
 }
 
+.prodictsImg {
+  height: 400px;
+  object-fit: cover;
+}
+
 .card {
   width: 16rem;
 }

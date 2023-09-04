@@ -3,6 +3,7 @@ import { removeUser } from "../../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/reactReduxHooks";
 import Button from 'react-bootstrap/Button';
+import { ROUTES } from "../../utils/routes";
 
 const IsAuthPage = () => {
   const dispatch = useAppDispatch();
@@ -10,7 +11,7 @@ const IsAuthPage = () => {
 
   const ChangeAccount = () => {
     dispatch(removeUser());
-    navigate('/');
+    navigate(`${ROUTES.HOMEGHPAGES}`);
   }
 
   return (

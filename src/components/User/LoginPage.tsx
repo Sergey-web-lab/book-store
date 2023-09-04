@@ -6,6 +6,7 @@ import { setUser } from "../../features/user/userSlice";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/reactReduxHooks";
+import { ROUTES } from "../../utils/routes";
 
 
 const LoginPage = () => {
@@ -18,7 +19,7 @@ const LoginPage = () => {
       .then((userCredential) => {
         // Signed in 
         const user: any = userCredential.user;
-        navigate('/');
+        navigate(`${ROUTES.HOMEGHPAGES}`);
         dispatch(setUser({
           email: user.email,
           id: user.uid,

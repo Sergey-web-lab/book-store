@@ -84,7 +84,7 @@ const Products: FC<ProductsProps> = ({ title, style = {}, currentPosts = [], pos
       <div className={styles.products}>
         {currentPosts.map(({ id, image, title, author, genre, price }, index) => (
           <Card className={styles.card} key={id}>
-            <Card.Img variant="top" src={`${image}`} />
+            <Card.Img className={styles.prodictsImg} variant="top" src={`${image}`} />
             <Card.Body>
               <Card.Title>{title}</Card.Title>
               <div className="products__product_info">
@@ -116,11 +116,11 @@ const Products: FC<ProductsProps> = ({ title, style = {}, currentPosts = [], pos
                 </Button>
               </div>
               <div className={styles.changeCountBtnsWrapper}>
-                <Button onClick={() => addToCart(index, id, price)} variant="primary">+</Button>
                 {// @ts-ignore: Object is possibly 'null'
                   cartData.find((n: { id: number; }) => n.id === id) === undefined || cartData.find((n: { id: number; }) => n.id === id).quantity === 0
                     ? ''
                     : <Button onClick={() => removeItemFromCart(index, id, price)} variant="primary">-</Button>}
+                <Button onClick={() => addToCart(index, id, price)} variant="primary">+</Button>
               </div>
             </Card.Body>
           </Card>

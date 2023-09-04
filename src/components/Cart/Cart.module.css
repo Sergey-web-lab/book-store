@@ -2,6 +2,13 @@
   padding-bottom: 25px;
 }
 
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
 .item {
   display: flex !important;
   gap: 30px;
@@ -52,7 +59,14 @@
   transform: scale(0.95);
 }
 
+.linkToForm__wrapper {
+  margin-top: 35px;
+}
+
 .linkToForm {
+  position: sticky;
+  top: 35px;
+  height: 50px;
   background: linear-gradient(to right, #562268, #0d6efd);
   background-color: #562268;
   color: #fff;

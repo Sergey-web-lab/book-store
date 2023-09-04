@@ -17,7 +17,7 @@ const Info = () => {
         </p>
       </Alert>
       <div className={styles.linkToMainWrapper}>
-        <Link className={styles.linkToMain} to={ROUTES.HOME}>Back to Main</Link>
+        <Link className={styles.linkToMain} to={ROUTES.HOMEGHPAGES}>Back to Main</Link>
       </div>
     </div>
   );

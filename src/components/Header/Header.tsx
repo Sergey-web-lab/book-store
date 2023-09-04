@@ -43,7 +43,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className="header__mainLink">
-        <Link className={styles.mainLinkWrapper} to={ROUTES.HOME}>
+        <Link className={styles.mainLinkWrapper} to={ROUTES.HOMEGHPAGES}>
           <img className={styles.img} src={homeImg} alt="Main page" />
           <h1 className={styles.mainTitle}>Main</h1>
         </Link>

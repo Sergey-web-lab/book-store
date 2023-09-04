@@ -17,6 +17,7 @@ type Founded = {
 
 const Product: FC = (item: any) => {
   const cartData = useAppSelector(state => state.user.cart);
+  const favData = useAppSelector(state => state.user.favorites);
   const product = item[0];
   const dispatch = useAppDispatch();
   let [addedItems, setAddedItems] = useState(0);
@@ -111,14 +112,18 @@ const Product: FC = (item: any) => {
                   : ''}
               </ButtonGroup>
             </ButtonToolbar>
-            <Button onClick={toggleFav} variant="primary">Add to favourites</Button>
+            <Button onClick={toggleFav} variant="primary">
+              {favData.find((n: { id: number; }) => n.id === product.id) === undefined
+                ? 'Add to favorites'
+                : 'Del from favorites'}
+            </Button>
           </div>
           {addedItems
             ?
             <p className={styles.addedItemsCountText}>You added {addedItems} this {addedItems === 1 ? 'book' : 'books'} it the cart</p>
             : ''}
           <div className={styles.linkToMainWrapper}>
-            <Link onClick={handleLinkClick} className={styles.linkToMain} to={ROUTES.HOME}>Back to Main</Link>
+            <Link onClick={handleLinkClick} className={styles.linkToMain} to={ROUTES.HOMEGHPAGES}>Back to Main</Link>
           </div>
         </div>}
     </>
