@@ -54,10 +54,6 @@ const OrderForm = () => {
     }
   });
 
-  const test = () => {
-    console.log(formData)
-  }
-
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const fullInfo = { ...data, cartList };
     console.log(JSON.stringify(fullInfo));
@@ -81,7 +77,6 @@ const OrderForm = () => {
 
   return (
     <div className={styles.orderForm}>
-      <button onClick={() => test()}>Test</button>
       <form className={styles.orderFormInputBlock} onSubmit={handleSubmit(onSubmit)}>
         <h1>OrderForm</h1>
         <InputGroup>

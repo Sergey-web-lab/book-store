@@ -15,13 +15,6 @@ const formDataChecker = () => {
 
   if (LS.getItem('formData')) {
     formData = JSON.parse(LS.getItem('formData'));
-    // for (let key in formData) {
-    //   if (form.elements[key].type === 'checkbox' && formData[key]) {
-    //     form.elements[key].checked = true;
-    //   } else {
-    //     form.elements[key].value = formData[key];
-    //   }
-    // }
   }
   return formData;
 }

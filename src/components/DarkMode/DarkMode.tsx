@@ -1,13 +1,29 @@
 import { ReactComponent as Sun } from "./Sun.svg";
 import { ReactComponent as Moon } from "./Moon.svg";
+import { useEffect } from "react";
 import "./DarkMode.css";
 
 const DarkMode = () => {
+    const LS = localStorage;
+
+    useEffect(() => {
+        const themeToggle = document.getElementById('darkmode-toggle');
+
+        if (LS.getItem('theme') === 'light') {
+            setLightMode();
+        } else if (LS.getItem('theme') === 'dark') {
+            setDarkMode();
+            themeToggle?.click();
+        }
+    }, [])
+
     const setDarkMode = () => {
+        LS.setItem('theme', 'dark');
         document.querySelector('body')?.setAttribute('data-theme', 'dark');
     }
 
     const setLightMode = () => {
+        LS.setItem('theme', 'light');
         document.querySelector('body')?.setAttribute('data-theme', 'light');
     }
 
