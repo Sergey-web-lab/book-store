@@ -1,12 +1,12 @@
 import styles from "./OrderForm.module.css";
+import formDataChecker from "./formDataChecker";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useAppSelector } from "../../hooks/reactReduxHooks";
-import { Button } from "react-bootstrap";
 
 const OrderForm = () => {
   enum DelivOrNotEnum {
@@ -28,6 +28,22 @@ const OrderForm = () => {
     email?: string
   }
 
+  const [formData, setFormData] = useState<any>({});
+
+  const resetFormData = () => {
+    const resetBtn = document.getElementById('orderForm__reset');
+    if (resetBtn !== undefined && resetBtn !== null) {
+      resetBtn.click();
+    }
+  }
+
+  useEffect(() => {
+    setFormData(formDataChecker());
+    setTimeout(() => {
+      resetFormData();
+    }, 1)
+  }, [])
+
   const userState = useAppSelector(state => state.user);
   const cartList = userState.cart;
   const currentUser: CurrentUser = userState.currentUser;
@@ -37,6 +53,10 @@ const OrderForm = () => {
       email: `${userState.isAuth ? currentUser.email : ''}`
     }
   });
+
+  const test = () => {
+    console.log(formData)
+  }
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const fullInfo = { ...data, cartList };
@@ -61,6 +81,7 @@ const OrderForm = () => {
 
   return (
     <div className={styles.orderForm}>
+      <button onClick={() => test()}>Test</button>
       <form className={styles.orderFormInputBlock} onSubmit={handleSubmit(onSubmit)}>
         <h1>OrderForm</h1>
         <InputGroup>
@@ -164,7 +185,7 @@ const OrderForm = () => {
             <p>10.00 - 19.00 everyday except holidays.</p>
           </>}
         <div className={styles.btnsWrapper}>
-          <Button className={styles.btn}>Submit</Button>
+          <button className={styles.btn}>Submit</button>
           <input
             className={styles.resetBtn}
             type="button"
@@ -177,6 +198,22 @@ const OrderForm = () => {
                   email: `${userState.isAuth ? currentUser.email : ''}`,
                   address: '',
                   dateAndTime: ''
+                })
+            }}
+          />
+          <input
+            id="orderForm__reset"
+            className={styles.resetBtn2}
+            type="button"
+            onClick={() => {
+              reset(
+                {
+                  name: `${formData.name ? formData.name : ''}`,
+                  tel: `${formData.tel ? formData.tel : ''}`,
+                  email: `${formData.email ? formData.email : ''}`,
+                  getNews: Boolean(`${formData.getNews ? formData.getNews : ''}`),
+                  address: `${formData.address ? formData.address : ''}`,
+                  dateAndTime: `${formData.dateAndTime ? formData.dateAndTime : ''}`
                 })
             }}
           />
