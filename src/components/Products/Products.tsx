@@ -52,7 +52,7 @@ const Products: FC<ProductsProps> = ({ title, style = {}, currentPosts = [], pos
     if (found === undefined) iCount = 0;
     else {
       const founded: Founded = found;
-      iCount = Number(founded) - 1;
+      iCount = Number(founded.quantity) - 1;
     }
 
     const fullIPrice = price * iCount;
