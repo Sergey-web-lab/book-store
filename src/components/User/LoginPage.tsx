@@ -28,9 +28,9 @@ const LoginPage = () => {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
-        alert('Invalid user');
+        alert(`Login error: ${errorMessage}`);
       });
   }
 

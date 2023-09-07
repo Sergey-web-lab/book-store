@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useGetProductQuery } from "../../features/api/apiSlice";
 import { IProduct } from "../../features/user/userSlice";
 import { useAppSelector } from "../../hooks/reactReduxHooks";
+import Alert from 'react-bootstrap/Alert';
 import PaginationC from "../PaginationC/PaginationC";
 import Products from "../Products/Products";
 
@@ -14,7 +15,7 @@ type HomeProps = {
 
 const Home: FC<HomeProps> = ({ genreForFilter, currentPage, setCurrentPage }) => {
   const localPostsShowQty = Number(localStorage.getItem('postsPerPage'));
-  const { data = [], isLoading } = useGetProductQuery(null);
+  const { data = [], isLoading, isError } = useGetProductQuery(null);
   const [postsPerPage, setPostsPerPage] = useState<number>(localPostsShowQty ? localPostsShowQty : 4);
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
@@ -28,7 +29,7 @@ const Home: FC<HomeProps> = ({ genreForFilter, currentPage, setCurrentPage }) =>
   })
 
   const itemsCurrentCat: IProduct[] = dataAfterSearchFilter.filter(
-    genreForFilter == 'All' || genreForFilter == 'all'
+    genreForFilter === 'All' || genreForFilter === 'all'
       ? (item: object) => item
       : (item: { genre: string; }) => item.genre.toLowerCase() == genreForFilter.toLowerCase()
   )
@@ -39,7 +40,16 @@ const Home: FC<HomeProps> = ({ genreForFilter, currentPage, setCurrentPage }) =>
     setCurrentPage(1);
   }, [postsPerPage])
 
-  if (isLoading) return <h1>Loading</h1>
+  if (isLoading) {
+    return <Alert variant="info">
+      <h1>Loading...</h1>
+    </Alert>
+  }
+  if (isError) {
+    return <Alert variant="info">
+      <h1>For some reason, the books did not load. Sorry.</h1>
+    </Alert>
+  }
 
   return (
     <>

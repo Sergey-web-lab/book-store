@@ -27,8 +27,9 @@ const RegisterPage = () => {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
+        alert(`Register error: ${errorMessage}`);
         // ...
       })
   }

@@ -32,7 +32,9 @@ body {
   color: black;
 }
 
-[data-theme='dark'] .OffcanvasC_offcanvas__hPWw4 button {}
+[data-theme='dark'] .AccordionC_accordion__f-sam:hover button {
+  color: white;
+}
 
 a {
   text-decoration: none;

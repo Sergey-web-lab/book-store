@@ -1,6 +1,6 @@
 import styles from "./Header.module.css";
 import homeImg from "../../imgs/home.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { setSearchInputVal } from "../../features/user/userSlice";
 import { useCheckAuth } from "../../hooks/useCheckAuth";
@@ -21,6 +21,8 @@ const Header = () => {
   const cartList = useAppSelector(state => state.user.cart);
   const inputVal = useAppSelector(state => state.user.searchInputVal);
   const { isAuth } = useCheckAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   let fullAmount = 0;
   cartList.forEach((item) => {
@@ -35,6 +37,15 @@ const Header = () => {
       price += item.fullIPrice;
     }
   })
+
+  const inputHandlerClick = () => {
+    if (location.pathname !== `${ROUTES.HOMEGHPAGES}`) {
+      let goToMain = window.confirm('Go to the main page to search for books?');
+      if (goToMain) {
+        navigate(`${ROUTES.HOMEGHPAGES}`);
+      }
+    }
+  }
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     dispatch(setSearchInputVal(e.target.value));
@@ -62,6 +73,7 @@ const Header = () => {
             type="search"
             placeholder="Search books in Main..."
             autoComplete="off"
+            onClick={inputHandlerClick}
             onChange={e => inputHandler(e)}
             value={inputVal}
           />
