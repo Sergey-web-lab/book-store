@@ -1,6 +1,7 @@
 import styles from "./OffcanvasC.module.css";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 import { ROUTES } from "../../utils/routes";
@@ -38,31 +39,33 @@ const OffcanvasC = () => {
       </Button>
 
       <Offcanvas className={styles.offcanvas} show={show} onHide={handleClose} placement='top' scroll={scroll}>
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header closeButton className={styles.offcanvasHeader}>
           <Offcanvas.Title>
             <h1>User menu</h1>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className={styles.offcanvasBody}>
           <div className={styles.info}>
-            <div className="header__info_linkToInfo">
-              <Link onClick={handleClose} to={ROUTES.INFO}>Info</Link>
-            </div>
-            <div className="header__info_linkToFavorites">
-              <Link onClick={handleClose} to={ROUTES.FAVORITES}>Favorites</Link>
-              {favList.length === 0
-                ? ''
-                : <div className="header__info_favoritesAmount">All: {favList.length}</div>}
-            </div>
-            <div className="header__info_linkToCart">
-              <Link onClick={handleClose} to={ROUTES.CART}>Cart</Link>
-              {cartList.length === 0
-                ? ''
-                : (<>
-                  <div className="cartAmount">All items: {fullAmount}</div>
-                  <div className="cartAmount">All price: {price}$</div>
-                </>)}
-            </div>
+            <Alert variant="secondary">
+              <div className="header__info_linkToInfo">
+                <Link onClick={handleClose} to={ROUTES.INFO}>Info</Link>
+              </div>
+              <div className="header__info_linkToFavorites">
+                <Link onClick={handleClose} to={ROUTES.FAVORITES}>Favorites</Link>
+                {favList.length === 0
+                  ? ''
+                  : <div className="header__info_favoritesAmount">All: {favList.length}</div>}
+              </div>
+              <div className="header__info_linkToCart">
+                <Link onClick={handleClose} to={ROUTES.CART}>Cart</Link>
+                {cartList.length === 0
+                  ? ''
+                  : (<>
+                    <div className="cartAmount">All items: {fullAmount}</div>
+                    <div className="cartAmount">All price: {price}$</div>
+                  </>)}
+              </div>
+            </Alert>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

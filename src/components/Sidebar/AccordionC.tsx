@@ -33,8 +33,8 @@ const AccordionC: FC<AccordionCProps> = ({ list, setGenreForFilter, setCurrentPa
   return (
     <Accordion className={styles.accordion}>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>CATEGORIES</Accordion.Header>
-        <Accordion.Body>
+        <Accordion.Header className={styles.accordionHeader}>CATEGORIES</Accordion.Header>
+        <Accordion.Body className={styles.accordionBody}>
           <nav>
             <ul className={styles.listItemsCat}>
               {list.map(({ id, title }) => (

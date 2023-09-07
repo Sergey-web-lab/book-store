@@ -48,10 +48,7 @@ const OrderForm = () => {
   const cartList = userState.cart;
   const currentUser: CurrentUser = userState.currentUser;
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({
-    mode: 'onBlur',
-    defaultValues: {
-      email: `${userState.isAuth ? currentUser.email : ''}`
-    }
+    mode: 'onBlur'
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -78,7 +75,22 @@ const OrderForm = () => {
   return (
     <div className={styles.orderForm}>
       <form className={styles.orderFormInputBlock} onSubmit={handleSubmit(onSubmit)}>
-        <h1>OrderForm</h1>
+        <div className={styles.titleWrapper}>
+          <h1>OrderForm</h1>
+          {userState.isAuth
+            ? <input
+              className={styles.resetBtnByUserData}
+              type="button"
+              value="Fill in user data"
+              onClick={() => {
+                reset(
+                  {
+                    email: `${userState.isAuth ? currentUser.email : ''}`
+                  })
+              }}
+            />
+            : ''}
+        </div>
         <InputGroup>
           <InputGroup.Text id="name">Name</InputGroup.Text>
           <Form.Control
@@ -190,7 +202,7 @@ const OrderForm = () => {
                 {
                   name: '',
                   tel: '',
-                  email: `${userState.isAuth ? currentUser.email : ''}`,
+                  email: '',
                   address: '',
                   dateAndTime: ''
                 })
